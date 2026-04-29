@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, 
+    initial-scale=1.0">
+  <meta name="description" content="The Priestess Chamber 
+    — Intuitive Psychological Tarot Readings with Erin Nyght. 
+    Shadow work through the cards. Halls of Hell.">
+  <title>The Priestess Chamber — Halls of Hell</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    /* Priestess Chamber page-specific styles only */
+    /* Ceremonial stillness variation of the site theme */
+    /* Nothing that duplicates theme.css or styles.css */
+
+    .priestess-section {
+      background: rgba(20, 8, 16, 0.6);
+      border-left: 4px solid var(--primary-rose);
+      padding: 2.5em;
+      margin-bottom: 3em;
+      border-radius: 2px;
+      transition: box-shadow 0.4s ease;
+    }
+
+    .priestess-section:hover {
+      box-shadow: 0 0 30px rgba(199, 74, 111, 0.2);
+    }
+
+    .priestess-title {
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      font-size: 1.6em;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.2em;
+      border-bottom: 2px solid var(--primary-rose);
+      padding-bottom: 0.6em;
+    }
+
+    .priestess-body {
+      font-size: 1.05em;
+      line-height: 1.9;
+      color: var(--text-light);
+      margin-bottom: 1.2em;
+    }
+
+    .priestess-placeholder {
+      display: block;
+      padding: 1.5em;
+      background: rgba(199, 74, 111, 0.05);
+      border: 1px dashed rgba(199, 74, 111, 0.3);
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.9em;
+      border-radius: 2px;
+      text-align: center;
+      margin: 1em 0;
+    }
+
+    .card-draw {
+      display: flex;
+      align-items: flex-start;
+      gap: 2.5em;
+      flex-wrap: wrap;
+      margin: 2em 0;
+      padding: 2em;
+      background: rgba(10, 6, 8, 0.8);
+      border: 2px solid var(--primary-rose);
+    }
+
+    .card-draw-image {
+      width: 180px;
+      height: auto;
+      flex-shrink: 0;
+      border: 3px solid var(--accent-gold);
+      box-shadow: 0 0 30px rgba(199, 74, 111, 0.4),
+                  0 0 60px rgba(170, 17, 17, 0.2);
+      filter: brightness(0.95) contrast(1.05);
+      transition: all 0.4s ease;
+    }
+
+    .card-draw-image:hover {
+      box-shadow: 0 0 50px rgba(199, 74, 111, 0.6);
+      transform: scale(1.02);
+    }
+
+    .card-draw-content {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .card-draw-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4em;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3em;
+    }
+
+    .card-draw-date {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75em;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 1em;
+      text-transform: uppercase;
+    }
+
+    .card-draw-reflection {
+      font-style: italic;
+      font-size: 1em;
+      line-height: 1.9;
+      color: var(--text-light);
+    }
+
+    .reading-formats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5em;
+      margin: 2em 0;
+    }
+
+    .reading-format-card {
+      background: rgba(26, 20, 24, 0.7);
+      border: 1px solid var(--border-crimson);
+      padding: 1.5em;
+      transition: all 0.3s ease;
+    }
+
+    .reading-format-card:hover {
+      border-color: var(--primary-rose);
+      box-shadow: 0 0 20px rgba(199, 74, 111, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .reading-format-name {
+      font-family: 'Cinzel', serif;
+      color: var(--primary-rose);
+      font-size: 1.1em;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6em;
+    }
+
+    .reading-format-desc {
+      font-size: 0.95em;
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: 0.8em;
+    }
+
+    .reading-format-note {
+      font-size: 0.85em;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .booking-invitation {
+      text-align: center;
+      padding: 2.5em;
+      background: rgba(199, 74, 111, 0.08);
+      border: 2px solid var(--primary-rose);
+      margin: 2em 0;
+    }
+
+    .booking-link {
+      display: inline-block;
+      padding: 1em 3em;
+      margin-top: 1.5em;
+      border: 2px solid var(--accent-gold);
+      color: var(--accent-gold);
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .booking-link:hover {
+      background: rgba(212, 175, 55, 0.15);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .section-divider {
+      text-align: center;
+      color: var(--border-crimson);
+      opacity: 0.5;
+      margin: 1em 0 2.5em 0;
+      font-size: 1em;
+      letter-spacing: 0.4em;
+    }
+
+/* ===== CHAMBER NAVIGATION ===== */
+
+.chamber-nav {
+  margin: 2em 0;
+  padding: 0;
+}
+
+.chamber-nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chamber-nav-item {
+  position: relative;
+}
+
+/* The link itself — desktop default */
+.chamber-nav-link {
+  display: block;
+  padding: 0.75em 1.4em;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  border: 1px solid var(--border-crimson);
+  background: rgba(10, 6, 8, 0.6);
+  color: var(--accent-gold);
+  transition: all 0.3s ease;
+  position: relative;
+  text-align: center;
+  min-width: 140px;
+}
+
+.chamber-nav-link:hover {
+  border-color: var(--accent-gold);
+  background: rgba(170, 17, 17, 0.2);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.3);
+}
+
+/* Active page indicator */
+.chamber-nav-link.active {
+  border-color: var(--accent-gold);
+  background: rgba(170, 17, 17, 0.3);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.4),
+              inset 0 0 12px rgba(170, 17, 17, 0.2);
+  color: var(--accent-gold);
+}
+
+/* Chamber name — always visible */
+.chamber-nav-name {
+  display: block;
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+/* Chamber description — DESKTOP: hidden until hover */
+.chamber-nav-desc {
+  display: block;
+  font-family: 'IM Fell English', serif;
+  font-size: 0.75em;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease,
+              opacity 0.35s ease,
+              margin-top 0.35s ease;
+  margin-top: 0;
+}
+
+/* Reveal description on hover — desktop */
+.chamber-nav-link:hover .chamber-nav-desc,
+.chamber-nav-link.active .chamber-nav-desc {
+  max-height: 4em;
+  opacity: 1;
+  margin-top: 0.5em;
+}
+
+/* MOBILE: descriptions always visible */
+@media (max-width: 768px) {
+
+  .chamber-nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5em;
+    padding: 0 0.5em;
+  }
+
+  .chamber-nav-link {
+    min-width: unset;
+    width: 100%;
+    padding: 1em 1.2em;
+    text-align: left;
+  }
+
+.chamber-nav-name {
+    font-size: 0.9em;
+  }
+
+  .chamber-nav-desc {
+    max-height: none;
+    opacity: 1;
+    margin-top: 0.4em;
+    font-size: 0.8em;
+    overflow: visible;
+  }
+
+  /* Remove transition on mobile — instant display */
+  .chamber-nav-link:hover .chamber-nav-desc,
+  .chamber-nav-link.active .chamber-nav-desc {
+    max-height: none;
+  }
+}
+
+/* ===== END CHAMBER NAVIGATION ===== */
+
+/* ===== TAROT GALLERY ===== */
+
+.tarot-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 
+                         minmax(120px, 1fr));
+  gap: 1.2em;
+  margin: 2em 0;
+}
+
+.tarot-card-thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  cursor: pointer;
+}
+
+.tarot-card-thumb img {
+  width: 100%;
+  height: auto;
+  border: 2px solid var(--border-crimson);
+  transition: all 0.3s ease;
+  filter: brightness(0.9);
+}
+
+.tarot-card-thumb img:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4),
+              0 0 40px rgba(199, 74, 111, 0.2);
+  filter: brightness(1.05);
+  transform: translateY(-4px) scale(1.03);
+}
+
+.tarot-card-thumb figcaption {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65em;
+  color: var(--text-muted);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+}
+
+/* Lightbox overlay for full card view */
+.tarot-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 3, 4, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  cursor: zoom-out;
+  animation: fadeIn 0.2s ease;
+}
+
+.tarot-lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  height: auto;
+  border: 3px solid var(--accent-gold);
+  box-shadow: 0 0 60px rgba(199, 74, 111, 0.5),
+              0 0 120px rgba(170, 17, 17, 0.3);
+}
+
+.tarot-lightbox-caption {
+  position: absolute;
+  bottom: 5vh;
+  font-family: 'Cinzel', serif;
+  font-size: 1em;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .tarot-gallery {
+    grid-template-columns: repeat(auto-fill,
+                           minmax(90px, 1fr));
+    gap: 0.8em;
+  }
+}
+
+/* ===== END TAROT GALLERY ===== */
+  </style>
+</head>
+<body>
+  <script src="script.js"></script>
+  <header>
+    <h1>The Priestess Chamber</h1>
+    <p class="center-text">
+      <i>The cards do not tell you what will happen.<br>
+      They show you what is already there,<br>
+      waiting to be seen.</i>
+    </p>
+  </header>
+  <nav class="chamber-nav" aria-label="Site navigation">
+    <ul class="chamber-nav-list">
+      <li class="chamber-nav-item">
+        <a href="TheSanctum.html" class="chamber-nav-link">
+          <span class="chamber-nav-name">The Sanctum</span>
+          <span class="chamber-nav-desc">where I live — the main hall, the prayer, the reading list, everything that is me</span>
+        </a>
+      </li>
+      <li class="chamber-nav-item">
+        <a href="TheAbyssalGate.html" class="chamber-nav-link">
+          <span class="chamber-nav-name">The Abyssal Gate</span>
+          <span class="chamber-nav-desc">knock here if you want to reach me — contact, social links, all the ways in</span>
+        </a>
+      </li>
+      <li class="chamber-nav-item">
+        <a href="ThePriestessChamber.html" class="chamber-nav-link active">
+          <span class="chamber-nav-name">The Priestess Chamber</span>
+          <span class="chamber-nav-desc">tarot as a mirror, not a crystal ball — readings, the weekly draw, shadow work</span>
+        </a>
+      </li>
+      <li class="chamber-nav-item">
+        <a href="TheHearthstone.html" class="chamber-nav-link">
+          <span class="chamber-nav-name">The Hearthstone</span>
+          <span class="chamber-nav-desc">the warm room — what I am reading, playing, thinking about, and figuring out right now</span>
+        </a>
+      </li>
+      <li class="chamber-nav-item">
+        <a href="SundayWLilith.html" class="chamber-nav-link">
+          <span class="chamber-nav-name">Sunday with Lilith</span>
+          <span class="chamber-nav-desc">weekly devotional space — sitting with Lilith, the practice, what she is asking this week</span>
+        </a>
+      </li>
+      <li class="chamber-nav-item">
+        <a href="Blogs.html" class="chamber-nav-link">
+          <span class="chamber-nav-name">The Grimoire</span>
+          <span class="chamber-nav-desc">where I write things down — thoughts, essays, whatever is asking to be said</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <main>
+    <!-- SECTION 1: WHAT THE CARDS ARE -->
+    <section class="priestess-section">
+      <h2 class="priestess-title">What The Cards Are</h2>
+
+      <p class="priestess-body">
+        Tarot is a symbolic language built from 78 images that map
+        the full range of human experience — desire, fear, grief,
+        transformation, stillness, destruction, renewal. What Carl
+        Jung called the collective unconscious lives in these cards:
+        the archetypes that move beneath every personal story, shaping
+        behaviour before the conscious mind has any say. A tarot
+        reading does not introduce anything foreign. It externalises
+        what is already operating inside you and lays it on the table
+        where you can finally look at it directly.
+      </p>
+
+      <p class="priestess-body">
+        On this page, tarot is not treated as fortune telling. It is
+        not prediction, not divination in the carnival sense, and not
+        a hotline to any divine authority. The cards do not know your
+        future — no one does, because it has not been written yet.
+        What the cards reflect is what is present: the patterns you
+        are repeating, the tensions you are carrying, the questions
+        you keep circling without asking out loud. That is what makes
+        a reading useful rather than merely entertaining. It shows
+        you what is here, now, whether you were ready to see it or not.
+      </p>
+
+      <p class="priestess-body">
+        Shadow work is the specific lens through which these readings
+        operate. The shadow — in Jung's framework — is everything
+        you have disowned, suppressed, or refused to look at: the
+        anger you call patience, the grief you call strength, the
+        needs you pretend you do not have. These disowned pieces do
+        not disappear. They drive behaviour from underneath, and they
+        will keep driving it until they are acknowledged. A tarot
+        reading structured as shadow work is an invitation to sit
+        across from what you usually look away from — not to fix it,
+        not to perform healing on command, but to see it clearly
+        and let that seeing do its own work.
+      </p>
+    </section>
+
+    <div class="section-divider">◆ ─── ◆ ─── ◆</div>
+
+    <!-- SECTION 2: WHAT A READING WITH ERIN LOOKS LIKE -->
+    <section class="priestess-section">
+      <h2 class="priestess-title">What A Reading With Erin Looks Like</h2>
+
+      <p class="priestess-body">
+        Erin approaches readings as a Luciferian practitioner and
+        Reiki Master. The reading is informed by both the symbolic
+        language of the cards and an energetic attunement to what
+        you are carrying into the session — spoken or unspoken. This
+        is not cold reading or theatrical intuition. It is a practice
+        built from years of personal shadow work, spiritual discipline,
+        and the honest willingness to sit with discomfort rather than
+        rush past it. The space she holds is direct, warm beneath the
+        formality, and completely without pretence.
+      </p>
+
+      <!-- ERIN FILLS THIS IN: describe the actual session
+      format — how long, what happens, how you open the
+      reading, what the querent needs to bring or prepare -->
+      <div class="priestess-placeholder">
+        Session format goes here — duration, how the reading opens,
+        what the querent should bring or prepare, what the physical
+        or digital space looks like during a session. Erin's words only.
+      </div>
+
+      <!-- ERIN FILLS THIS IN: describe distance readings
+      — how they work, what platform, how results are
+      delivered (written, video, audio, live session) -->
+      <div class="priestess-placeholder">
+        Distance readings go here — how they work, what platform is
+        used, how results are delivered (written, video, audio, or
+        live session), and anything specific to the remote format.
+        Erin's words only.
+      </div>
+
+      <!-- ERIN FILLS THIS IN: anything you want people
+      to know BEFORE they book — what makes a good
+      querent, what questions work well, what to expect
+      emotionally from shadow work readings -->
+      <div class="priestess-placeholder">
+        Before-you-book notes go here — what makes a good querent,
+        what kinds of questions work well with this approach, and what
+        to expect emotionally from shadow work readings. Honest
+        preparation, not a sales pitch. Erin's words only.
+      </div>
+    </section>
+
+    <div class="section-divider">◆ ─── ◆ ─── ◆</div>
+
+    <!-- SECTION 3: THE DRAW -->
+    <section class="priestess-section">
+      <h2 class="priestess-title">The Draw</h2>
+
+      <p class="priestess-body">
+        One card, drawn with intention. Updated regularly.
+        Not a random generator — a deliberate pull, with
+        reflection. If this card is speaking to something
+        in your own life, let it. That is what it is for.
+      </p>
+
+      <div class="card-draw">
+
+  <img class="card-draw-image"
+       src="images/TarotCards/2_IIHPriestess.png"
+       alt="The High Priestess — current draw"
+       onerror="this.style.display='none'">
+
+  <div class="card-draw-content">
+    <div class="card-draw-name">II — The High Priestess</div>
+    <div class="card-draw-date">
+      <!-- UPDATE WEEKLY: HE date of this draw -->
+      Last drawn: [Month Day, 12026 HE]
+    </div>
+    <div class="card-draw-reflection priestess-placeholder">
+      <!-- ERIN FILLS THIS IN: your reflection on this
+      card and what it is bringing up right now.
+      Write in your own voice — what this card means
+      to you personally, what it is asking of the
+      person who encounters it this week.
+      2-4 sentences minimum. No word count maximum. -->
+      This card is waiting for Erin's voice.
+    </div>
+  </div>
+
+</div>
+
+      <p class="priestess-body" style="font-size: 0.85em; color: var(--text-muted);
+         font-style: italic; margin-top: 1em; text-align: center;">
+        To update this draw: change the image src to the new
+        card filename, update the card name, update the date,
+        and replace the reflection text.
+        <!-- This comment is an instruction to Erin,
+             remove it once the workflow is established -->
+      </p>
+
+    </section>
+
+    <div class="section-divider">◆ ─── ◆ ─── ◆</div>
+
+    <!-- SECTION 4: READING FORMATS -->
+    <section class="priestess-section">
+      <h2 class="priestess-title">Reading Formats</h2>
+
+      <p class="priestess-body">
+        Each format below serves a different kind of question.
+        If you are unsure which suits your situation, say so
+        when you reach out — that conversation is part of
+        the process.
+      </p>
+
+      <div class="reading-formats-grid">
+
+        <div class="reading-format-card">
+          <div class="reading-format-name">
+            The Single Card
+          </div>
+          <p class="reading-format-desc">
+            One card drawn in response to one focused question
+            or a single area of life needing illumination.
+            Best for a specific situation, a decision point,
+            or a moment requiring clarity rather than depth.
+          </p>
+          <p class="reading-format-note priestess-placeholder">
+            <!-- ERIN FILLS THIS IN: duration and price -->
+          </p>
+        </div>
+
+        <div class="reading-format-card">
+          <div class="reading-format-name">
+            The Three-Card Draw
+          </div>
+          <p class="reading-format-desc">
+            Past, present, future — or more accurately:
+            what shaped this, what is present now, what is
+            emerging. Three cards in relationship to each
+            other, read as a narrative rather than in isolation.
+            The most versatile format for general reflection.
+          </p>
+          <p class="reading-format-note priestess-placeholder">
+            <!-- ERIN FILLS THIS IN: duration and price -->
+          </p>
+        </div>
+
+        <div class="reading-format-card">
+          <div class="reading-format-name">
+            The Shadow Spread
+          </div>
+          <p class="reading-format-desc">
+            A deeper spread designed specifically for shadow
+            work — examining what is being avoided, what
+            has been disowned, and what is asking to be
+            integrated. Not a comfortable reading.
+            An honest one. For those ready to look directly
+            at what is driving them.
+          </p>
+          <p class="reading-format-note priestess-placeholder">
+            <!-- ERIN FILLS THIS IN: duration and price -->
+          </p>
+        </div>
+
+        <div class="reading-format-card">
+          <div class="reading-format-name">
+            The Full Spread
+          </div>
+          <p class="reading-format-desc">
+            A comprehensive reading covering multiple areas
+            of life or a complex situation requiring full
+            context. Erin's most in-depth offering —
+            suitable for significant crossroads, major
+            transitions, or when a thorough examination
+            of where you are is needed.
+          </p>
+          <p class="reading-format-note priestess-placeholder">
+            <!-- ERIN FILLS THIS IN: duration and price -->
+          </p>
+        </div>
+
+        <div class="reading-format-card priestess-placeholder">
+          <!-- ERIN FILLS THIS IN: add any additional reading
+          format here — couples readings, Reiki-combined
+          sessions, or any other offering -->
+        </div>
+
+      </div>
+
+      <p class="priestess-body"
+         style="font-style: italic;
+                color: var(--text-muted);
+                margin-top: 1em;">
+        Distance readings available worldwide.<br>
+        All readings conducted with the understanding that
+        the cards reflect — they do not prescribe.
+      </p>
+
+<div class="section-divider">◆ ─── ◆ ─── ◆</div>
+
+<h3 class="priestess-title" 
+    style="font-size: 1.2em; margin-top: 1.5em;">
+  The Major Arcana
+</h3>
+
+<p class="priestess-body">
+  The 22 cards of the Major Arcana. Each one an 
+  archetype, a force, a mirror. These are the cards 
+  used in readings here — generated in the aesthetic 
+  of the Halls, dark and specific to this practice.
+</p>
+
+<div class="tarot-gallery">
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/0_0fool.png" 
+         alt="0 — The Fool">
+    <figcaption>0 — The Fool</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/1_IMagician.png"
+         alt="I — The Magician">
+    <figcaption>I — The Magician</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/2_IIHPriestess.png"
+         alt="II — The High Priestess">
+    <figcaption>II — The High Priestess</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/3_IIIEmpress.png"
+         alt="III — The Empress">
+    <figcaption>III — The Empress</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/4_IVEmperor.png"
+         alt="IV — The Emperor">
+    <figcaption>IV — The Emperor</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/5_VHierophant.png"
+         alt="V — The Hierophant">
+    <figcaption>V — The Hierophant</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/6_VILovers.png"
+         alt="VI — The Lovers">
+    <figcaption>VI — The Lovers</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/7_VIIChariot.png"
+         alt="VII — The Chariot">
+    <figcaption>VII — The Chariot</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/8_VIIIStrength.png"
+         alt="VIII — Strength">
+    <figcaption>VIII — Strength</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/9_IXHermit.png"
+         alt="IX — The Hermit">
+    <figcaption>IX — The Hermit</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/10_XWheel.png"
+         alt="X — Wheel of Fortune">
+    <figcaption>X — Wheel of Fortune</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/11_XIJustice.png"
+         alt="XI — Justice">
+    <figcaption>XI — Justice</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/12_XIIHangedOne.png"
+         alt="XII — The Hanged Man">
+    <figcaption>XII — The Hanged Man</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/13_XIIIDeath.png"
+         alt="XIII — Death">
+    <figcaption>XIII — Death</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/14_XIVTemperence.png"
+         alt="XIV — Temperance">
+    <figcaption>XIV — Temperance</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/15_XVDevil.png"
+         alt="XV — The Devil">
+    <figcaption>XV — The Devil</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/16_XVITower.png"
+         alt="XVI — The Tower">
+    <figcaption>XVI — The Tower</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/17_XVIIStar.png"
+         alt="XVII — The Star">
+    <figcaption>XVII — The Star</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/18_XVIIMoon.png"
+         alt="XVIII — The Moon">
+    <figcaption>XVIII — The Moon</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/19_XIXSun.png"
+         alt="XIX — The Sun">
+    <figcaption>XIX — The Sun</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/20_XXAwaken.png"
+         alt="XX — Judgement">
+    <figcaption>XX — Judgement</figcaption>
+  </figure>
+
+  <figure class="tarot-card-thumb">
+    <img src="images/TarotCards/21_XXIWorld.png"
+         alt="XXI — The World">
+    <figcaption>XXI — The World</figcaption>
+  </figure>
+
+</div>
+
+    </section>
+
+    <div class="section-divider">◆ ─── ◆ ─── ◆</div>
+
+    <!-- SECTION 5: TO BOOK A READING -->
+    <section class="priestess-section">
+      <h2 class="priestess-title">To Book A Reading</h2>
+
+      <div class="booking-invitation">
+
+        <p class="priestess-body">
+          Readings are booked directly — no automated
+          system, no cart, no queue. You reach out,
+          we talk briefly about what you are bringing
+          to the table, and we find the right format
+          and time together.
+        </p>
+
+        <p class="priestess-body">
+          If you are unsure whether a reading is right
+          for you, that uncertainty is a good reason
+          to reach out, not a reason to wait.
+        </p>
+
+        <!-- ERIN FILLS THIS IN: any additional booking
+        notes — availability windows, response time,
+        what to include in your first message,
+        whether you take walk-ins at events -->
+
+        <a href="TheAbyssalGate.html"
+           class="booking-link">
+          ◆ Cross The Abyssal Gate ◆
+        </a>
+
+        <p style="font-size: 0.85em;
+                  color: var(--text-muted);
+                  margin-top: 1.5em;
+                  font-style: italic;">
+          Contact via email or Signal —
+          details at The Abyssal Gate.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <nav class="social-nav" aria-label="Social media links">
+    <a href="https://www.threads.com/@erinofotherworld?__pwa=1" target="_blank" rel="noopener noreferrer">
+      <img class="social-icon" src="images/ThreadsLogo.png" alt="Threads">
+    </a>
+    <a href="https://fetlife.com/NaszriteSin" target="_blank" rel="noopener noreferrer">
+      <img class="social-icon" src="images/FetLife1.png" alt="FetLife">
+    </a>
+    <a href="https://signal.me/#eu/29xMRCXdjUzc_33p4QREeYGRYf-BYCHfuNMosfd0rIVAhnx7sDVI452jrwJ7LAry" target="_blank" rel="noopener noreferrer">
+      <img class="social-icon" src="images/SignalChat1.png" alt="Signal">
+    </a>
+    <a href="https://substack.com/@erinofotherworldscrh001?utm_source=user-menu" target="_blank" rel="noopener noreferrer">
+      <img class="social-icon" src="images/SubstackLogo.png" alt="Substack">
+    </a>
+    <a href="https://discord.gg/WGBBBNuubU" target="_blank" rel="noopener noreferrer">
+      <img class="social-icon" src="images/DiscordLogo1.png" alt="Discord">
+    </a>
+  </nav>
+
+  <div class="audio-player"
+       data-title="The Restless Shadow"
+       data-artist="SUNO"
+       data-art="images/LuciNLilithMeet.jpg">
+    <audio id="site-audio" loop>
+      <source src="audio/TheRestlessShadows.mp3"
+              type="audio/mpeg">
+    </audio>
+    <div class="meta-and-art">
+      <img class="album-art"
+           src="images/LuciNLilithMeet.jpg"
+           alt="Album art">
+      <div class="meta">
+        <div class="song-title">The Restless Shadow</div>
+        <div class="artist">SUNO</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="prev" aria-label="previous">⏮️</button>
+      <button class="play" aria-label="play">Play</button>
+      <button class="pause" aria-label="pause">Pause</button>
+      <button class="stop" aria-label="stop">Stop</button>
+      <button class="next" aria-label="next">⏭️</button>
+      <label class="volume-label" for="volume-range">
+        Volume
+      </label>
+      <input id="volume-range" class="volume" type="range"
+             min="0" max="1" step="0.01" value="1"
+             aria-label="volume">
+    </div>
+    <div class="progress-container">
+      <input class="progress" type="range"
+             min="0" max="100" step="0.1" value="0"
+             aria-label="seek">
+    </div>
+    <div class="time" aria-live="polite">00:00 / 00:00</div>
+  </div>
+
+  <footer>
+    <p class="center-text" style="color:darkred">
+© 2025 Halls Of Hell Project: By Erin Nyght. Artistic 
+elemtents by Erin Nyght & Google Gemini AI Generation. 
+All art elements edited in Google's SnapSeed & Infinate 
+Painter by Erin Nyght
+    </p>
+    <img class="center-image" src="images/SafeSpace.png"
+         width="150" height="150"
+         alt="This is a 2SLGBTQIA Safe Space">
+  </footer>
+
+<script>
+(function() {
+  const gallery = document.querySelector('.tarot-gallery');
+  if (!gallery) return;
+
+  function openLightbox(src, caption) {
+    const lb = document.createElement('div');
+    lb.className = 'tarot-lightbox';
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.setAttribute('aria-label', caption);
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = caption;
+
+    const cap = document.createElement('div');
+    cap.className = 'tarot-lightbox-caption';
+    cap.textContent = caption;
+
+    lb.appendChild(img);
+    lb.appendChild(cap);
+
+    lb.addEventListener('click', () => lb.remove());
+
+    function onKey(e) {
+      if (e.key === 'Escape') {
+        lb.remove();
+        document.removeEventListener('keydown', onKey);
+      }
+    }
+    document.addEventListener('keydown', onKey);
+
+    document.body.appendChild(lb);
+    lb.focus();
+  }
+
+  gallery.querySelectorAll('.tarot-card-thumb').forEach(fig => {
+    const img = fig.querySelector('img');
+    const cap = fig.querySelector('figcaption');
+    if (!img) return;
+
+    fig.addEventListener('click', () => {
+      openLightbox(img.src, cap ? cap.textContent : img.alt);
+    });
+
+    // Keyboard accessible
+    fig.setAttribute('tabindex', '0');
+    fig.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(img.src, cap ? cap.textContent : img.alt);
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

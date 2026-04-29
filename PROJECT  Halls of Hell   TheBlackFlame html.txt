@@ -1,0 +1,335 @@
+PROJECT: Halls of Hell — TheBlackFlame.html
+PAGE NAME: The Black Flame
+NAV LABEL: The Black Flame
+FILE TO BUILD: TheBlackFlame.html
+
+EXTERNAL FILES — never touch, never duplicate:
+  theme.css — all base styles, fonts, CSS variables
+  styles.css — modal, audio player components
+  script.js — content warning, audio player control,
+               nav active state, suggestion box
+
+CSS VARIABLES AVAILABLE FROM theme.css:
+  --bg-dark: #0a0608
+  --primary-crimson: #aa1111
+  --primary-rose: #c74a6f
+  --accent-gold: #d4af37
+  --text-light: #e8e0d5
+  --text-muted: #a89a8f
+  --border-crimson: #5a0a0a
+  Fonts: Cinzel (headings), IM Fell English (body)
+
+WHAT THIS PAGE IS:
+The innermost sacred chamber of the Halls of Hell.
+A permanent devotional space for Erin Nyght's living
+Luciferian practice — Qliphothic pathworking meditation,
+devotional tarot as a specific line of questions Lilith
+asks, and the pursuit of gnosis through the LHP.
+Erin is a member of a real mystery school.
+This is not aesthetic. This is lived practice.
+
+VISUAL IDENTITY — BLACK FLAME VARIATION:
+Darker and more ceremonial than any other page.
+Closer to the ritual register of The Sanctum than
+the warmth of The Hearthstone.
+Specific qualities:
+  - Section borders: var(--primary-crimson) — deeper,
+    more serious than gold
+  - Background feels enclosed — like a temple inner
+    sanctum, not a room with windows
+  - Typography: more formal, more space between elements
+  - No warmth cues — no hearth imagery, no cozy language
+  - Atmosphere: candlelit, focused, deliberately entered
+
+TONE RULES FOR HAIKU:
+  DO write: structural section text that is factual
+  DO write: descriptive text about the Qliphothic tree
+            and Luciferian tradition that is accurate
+  DO write: placeholder instructions clearly addressed
+            to Erin
+  DO NOT write: Erin's pathworking records
+  DO NOT write: Erin's devotional questions
+  DO NOT write: anything about Erin's mystery school
+  DO NOT write: Erin's personal reflections
+  DO NOT write: invented spiritual content of any kind
+  DO NOT write: generic "shadow work" filler language
+  If in doubt: leave it as a placeholder. Always.
+
+STRUCTURAL RULES — follow exactly:
+  First line inside <body>:
+    <script src="script.js"></script>
+  Order of elements:
+    1. <script src="script.js"></script>
+    2. <header>
+    3. <nav class="chamber-nav">
+    4. <main>
+    5. <nav class="social-nav">
+    6. <div class="audio-player">
+    7. <footer>
+    8. </body></html> — absolute last two lines
+
+EXACTLY FIVE SECTIONS inside <main> in this order:
+  1. id="the-flame"
+     class="flame-section"
+     Title: "The Black Flame"
+     — Erin's description of what this practice is
+       and what this page holds. Her words only.
+
+  2. id="the-tree"
+     class="flame-section"
+     Title: "The Qliphothic Tree"
+     — factual overview of the Qliphothic framework
+       Haiku writes this section — it is doctrinal
+       context, not personal content
+     — current sphere Erin is working in:
+       placeholder only
+
+  3. id="the-questions"
+     class="flame-section"
+     Title: "What Lilith Asks"
+     — Erin's specific devotional tarot questions
+     — EVERY question is a placeholder
+     — Haiku writes NO questions whatsoever
+     — structure only: numbered list of placeholders
+
+  4. id="pathworking-record"
+     class="flame-section"
+     Title: "The Pathworking Record"
+     — field notes from significant inner journeys
+     — updated when something surfaces, not on schedule
+     — ALL entries are placeholders
+     — Haiku writes NO pathworking content
+
+  5. id="on-the-path"
+     class="flame-section"
+     Title: "On The Path"
+     — Erin's permanent piece about what the
+       Luciferian pursuit means to her specifically
+     — placeholder only, Erin's words when ready
+
+NAV — seven links in this exact order:
+  TheSanctum.html → "The Sanctum"
+    desc: "where I live — the main hall, the prayer,
+           the reading list, everything that is me"
+  TheAbyssalGate.html → "The Abyssal Gate"
+    desc: "knock here if you want to reach me —
+           contact, social links, all the ways in"
+  ThePriestessChamber.html → "The Priestess Chamber"
+    desc: "tarot as a mirror, not a crystal ball —
+           readings, the weekly draw, shadow work"
+  TheHearthstone.html → "The Hearthstone"
+    desc: "the warm room — what I am reading, playing,
+           thinking about, and figuring out right now"
+  TheDrawingRoom.html → "The Drawing Room"
+    desc: "where I make things — finished work,
+           works in progress, honest notes about both"
+  TheBlackFlame.html → "The Black Flame"
+    desc: "the innermost chamber — pathworking,
+           devotional practice, the Qliphothic path"
+  TheAbyssalGate.html → "The Abyssal Gate"
+
+CORRECTED NAV — seven links:
+  TheSanctum.html
+  ThePriestessChamber.html
+  TheBlackFlame.html
+  TheHearthstone.html
+  TheDrawingRoom.html
+  Blogs.html → "The Grimoire"
+    desc: "where I write things down — thoughts,
+           essays, whatever is asking to be said"
+  TheAbyssalGate.html
+
+TheBlackFlame.html gets class="chamber-nav-link active"
+All others get class="chamber-nav-link"
+
+NAV HTML STRUCTURE — use exactly this pattern:
+  <nav class="chamber-nav" aria-label="Site navigation">
+    <ul class="chamber-nav-list">
+      <li class="chamber-nav-item">
+        <a href="[file]" class="chamber-nav-link [active]">
+          <span class="chamber-nav-name">[Name]</span>
+          <span class="chamber-nav-desc">[desc]</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+SOCIAL NAV — five icons in this order:
+  <a href="https://www.threads.com/@erinofotherworld?__pwa=1"
+     target="_blank" rel="noopener noreferrer">
+    <img class="social-icon" src="images/ThreadsLogo.png"
+         alt="Threads">
+  </a>
+  <a href="https://fetlife.com/NaszriteSin"
+     target="_blank" rel="noopener noreferrer">
+    <img class="social-icon" src="images/FetLife1.png"
+         alt="FetLife">
+  </a>
+  <a href="https://signal.me/#eu/29xMRCXdjUzc_33p4QREeYGRYf-BYCHfuNMosfd0rIVAhnx7sDVI452jrwJ7LAry"
+     target="_blank" rel="noopener noreferrer">
+    <img class="social-icon" src="images/SignalChat1.png"
+         alt="Signal">
+  </a>
+  <a href="https://substack.com/@erinofotherworldscrh001"
+     target="_blank" rel="noopener noreferrer">
+    <img class="social-icon" src="images/SubstackLogo.png"
+         alt="Substack">
+  </a>
+  <a href="https://discord.gg/WGBBBNuubU"
+     target="_blank" rel="noopener noreferrer">
+    <img class="social-icon" src="images/DiscordLogo1.png"
+         alt="Discord">
+  </a>
+
+AUDIO PLAYER — use exactly this structure:
+  <div class="audio-player"
+       data-title="The Restless Shadow"
+       data-artist="SUNO"
+       data-art="images/LuciNLilithMeet.jpg">
+    <audio id="site-audio" loop>
+      <source src="audio/TheRestlessShadows.mp3"
+              type="audio/mpeg">
+    </audio>
+    <div class="meta-and-art">
+      <img class="album-art"
+           src="images/LuciNLilithMeet.jpg"
+           alt="Album art">
+      <div class="meta">
+        <div class="song-title">The Restless Shadow</div>
+        <div class="artist">SUNO</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="prev" aria-label="previous">⏮️</button>
+      <button class="play" aria-label="play">Play</button>
+      <button class="pause" aria-label="pause">Pause</button>
+      <button class="stop" aria-label="stop">Stop</button>
+      <button class="next" aria-label="next">⏭️</button>
+      <label class="volume-label" for="volume-range">
+        Volume
+      </label>
+      <input id="volume-range" class="volume"
+             type="range" min="0" max="1"
+             step="0.01" value="1" aria-label="volume">
+    </div>
+    <div class="progress-container">
+      <input class="progress" type="range"
+             min="0" max="100" step="0.1" value="0"
+             aria-label="seek">
+    </div>
+    <div class="time" aria-live="polite">
+      00:00 / 00:00
+    </div>
+  </div>
+  NO audio JavaScript anywhere in the HTML file.
+
+FOOTER — exact text, every typo preserved:
+  <footer>
+    <p class="center-text" style="color:darkred">
+  © 2025 Halls Of Hell Project: By Erin Nyght.
+  Artistic elemtents by Erin Nyght & Google Gemini
+  AI Generation. All art elements edited in Google's
+  SnapSeed & Infinate Painter by Erin Nyght
+    </p>
+    <img class="center-image" src="images/SafeSpace.png"
+         width="150" height="150"
+         alt="This is a 2SLGBTQIA Safe Space">
+  </footer>
+
+PLACEHOLDER CLASS — use for all personal content:
+  class="flame-placeholder"
+  Every placeholder must contain visible instructional
+  text addressed directly to Erin.
+  Never leave a placeholder visually empty.
+
+DO NOT ADD:
+  - Any <script> tags except script.js line
+  - Any audio JavaScript
+  - Any inline style="" attributes
+  - Any invented spiritual or personal content
+  - Any classes not defined in the <style> block
+    or in theme.css
+
+PROTECTED — never modify once written:
+  - All CSS in the <style> block
+  - The header text
+  - The nav structure
+  - The Qliphothic tree factual content in Section 2
+  - The audio player structure
+  - The footer text including typos
+
+STEP 5 — Section 5, Social Nav, Audio Player, Footer
+
+This is the final step.
+Fill in everything remaining.
+Do not change anything already written.
+Output the complete finished file.
+
+FILL SECTION 5 — On The Path:
+Replace <!-- SECTION 5: ON THE PATH --> with:
+
+<section class="flame-section" id="on-the-path">
+  <h2 class="flame-title">On The Path</h2>
+  <div class="flame-placeholder">
+    <!-- ERIN FILLS THIS IN -->
+    This section holds Erin's permanent written
+    piece about what the Luciferian pursuit of
+    knowledge means to her specifically.
+    What drew her to the Left-Hand Path.
+    What the mystery school has opened.
+    What Lilith has asked of her that she has
+    said yes to. Why this path and not another.
+    Write as paragraphs using class="flame-body".
+    This is not a public explanation of Luciferianism.
+    It is a personal account of Erin's path.
+    Write it when ready. It can be updated as
+    the path deepens.
+  </div>
+</section>
+
+Close </main> immediately after Section 5.
+
+FILL SOCIAL NAV:
+Replace <!-- SOCIAL LINKS --> with the five social
+icon links from CONTEXT_BLACKFLAME_HAIKU.txt.
+Exact URLs, exact filenames, exact structure.
+Wrap all five links inside
+<nav class="social-nav" aria-label="Social media links">
+
+FILL AUDIO PLAYER:
+Replace <!-- AUDIO PLAYER --> with the exact audio
+player structure from CONTEXT_BLACKFLAME_HAIKU.txt.
+id="site-audio" on the audio element.
+loop attribute on the audio element.
+No audio JavaScript anywhere.
+
+FILL FOOTER:
+Replace <!-- FOOTER --> with footer content from
+CONTEXT_BLACKFLAME_HAIKU.txt.
+Preserve every typo in the copyright text exactly.
+
+FINAL VERIFICATION before outputting:
+□ All five sections present with correct ids:
+    the-flame / the-tree / the-questions /
+    pathworking-record / on-the-path
+□ </main> closes after on-the-path section
+□ Section 5 has flame-placeholder with instructions
+□ No personal content invented by Haiku anywhere
+□ Social nav has all five platform icons
+□ Social nav uses class="social-nav"
+□ Audio player has id="site-audio" and loop
+□ Audio player has all required class names:
+    .album-art .song-title .artist .meta-and-art
+    .meta .controls .play .pause .stop .prev .next
+    .volume .progress .time .progress-container
+□ id="volume-range" on the volume input
+□ No audio JavaScript anywhere in the file
+□ Footer copyright text has typos preserved
+□ SafeSpace.png in footer
+□ script.js is first line inside <body>
+□ No extra script blocks anywhere
+□ </body></html> are the absolute final two lines
+
+Output the complete finished TheBlackFlame.html.
+After the file output, list every section completed
+one line each.

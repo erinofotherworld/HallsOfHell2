@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Black Flame — Erin Nyght's Luciferian devotional practice. Qliphothic pathworking, devotional tarot, the pursuit of gnosis. Halls of Hell.">
+    <title>The Black Flame — Halls of Hell</title>
+    <link rel="stylesheet" href="theme.css">
+    <style>
+        .flame-section {
+            background: rgba(12, 4, 6, 0.75);
+            border-left: 4px solid var(--primary-crimson);
+            padding: 2.5em;
+            margin-bottom: 3.5em;
+            border-radius: 2px;
+            transition: box-shadow 0.4s ease;
+        }
+        .flame-section:hover {
+            box-shadow: 0 0 35px rgba(170, 17, 17, 0.2);
+        }
+        .flame-title {
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            color: var(--primary-crimson);
+            font-size: 1.5em;
+            letter-spacing: 0.14em;
+            margin-bottom: 1.4em;
+            border-bottom: 1px solid rgba(170, 17, 17, 0.3);
+            padding-bottom: 0.6em;
+        }
+        .flame-body {
+            font-size: 1.05em;
+            line-height: 1.95;
+            color: var(--text-light);
+            margin-bottom: 1.1em;
+        }
+        .flame-placeholder {
+            display: block;
+            padding: 1.4em;
+            background: rgba(170, 17, 17, 0.04);
+            border: 1px dashed rgba(170, 17, 17, 0.3);
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.88em;
+            border-radius: 2px;
+            margin: 1em 0;
+            line-height: 1.7;
+        }
+        .flame-divider {
+            text-align: center;
+            color: var(--primary-crimson);
+            opacity: 0.4;
+            margin: 1em 0 3em 0;
+            letter-spacing: 0.5em;
+            font-size: 0.85em;
+        }
+        .sphere-current {
+            background: rgba(170, 17, 17, 0.08);
+            border: 1px solid rgba(170, 17, 17, 0.25);
+            padding: 1.2em 1.5em;
+            margin: 1.5em 0;
+        }
+        .sphere-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.72em;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--primary-crimson);
+            display: block;
+            margin-bottom: 0.4em;
+        }
+        .sphere-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15em;
+            color: var(--accent-gold);
+            margin-bottom: 0.3em;
+        }
+        .sphere-desc {
+            font-size: 0.92em;
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.6;
+        }
+        .qliphoth-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill,
+                minmax(220px, 1fr));
+            gap: 1em;
+            margin: 2em 0;
+        }
+        .qliphoth-sphere {
+            background: rgba(10, 6, 8, 0.6);
+            border: 1px solid var(--border-crimson);
+            padding: 1.2em;
+            transition: border-color 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+        .qliphoth-sphere:hover {
+            border-color: var(--primary-crimson);
+            box-shadow: 0 0 15px rgba(170, 17, 17, 0.2);
+        }
+        .qliphoth-number {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 0.3em;
+        }
+        .qliphoth-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1em;
+            color: var(--primary-crimson);
+            margin-bottom: 0.4em;
+        }
+        .qliphoth-demon {
+            font-size: 0.82em;
+            color: var(--accent-gold);
+            font-style: italic;
+            margin-bottom: 0.4em;
+        }
+        .qliphoth-desc {
+            font-size: 0.82em;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .questions-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5em 0;
+            counter-reset: question-counter;
+        }
+        .questions-list li {
+            counter-increment: question-counter;
+            display: flex;
+            gap: 1.2em;
+            align-items: flex-start;
+            padding: 1em 0;
+            border-bottom: 1px solid rgba(170, 17, 17, 0.15);
+        }
+        .questions-list li:last-child {
+            border-bottom: none;
+        }
+        .questions-list li::before {
+            content: counter(question-counter, upper-roman);
+            font-family: 'Cinzel', serif;
+            font-size: 0.85em;
+            color: var(--primary-crimson);
+            min-width: 2em;
+            opacity: 0.7;
+            flex-shrink: 0;
+            padding-top: 0.1em;
+        }
+        .question-text {
+            font-style: italic;
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 1em;
+        }
+        .record-entry {
+            background: rgba(10, 6, 8, 0.5);
+            border-left: 2px solid rgba(170, 17, 17, 0.4);
+            padding: 1.4em 1.8em;
+            margin-bottom: 2em;
+        }
+        .record-date {
+            font-family: 'Cinzel', serif;
+            font-size: 0.72em;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 0.5em;
+        }
+        .record-sphere {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85em;
+            color: var(--primary-crimson);
+            margin-bottom: 0.8em;
+            font-style: italic;
+        }
+        .record-notes {
+            font-size: 0.95em;
+            line-height: 1.85;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        .chamber-nav {
+            margin: 2em 0;
+            padding: 0;
+        }
+        .chamber-nav-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75em;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .chamber-nav-item {
+            position: relative;
+        }
+        .chamber-nav-link {
+            display: block;
+            padding: 0.75em 1.4em;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            border: 1px solid var(--border-crimson);
+            background: rgba(10, 6, 8, 0.6);
+            color: var(--accent-gold);
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 140px;
+        }
+        .chamber-nav-link:hover {
+            border-color: var(--accent-gold);
+            background: rgba(170, 17, 17, 0.2);
+            box-shadow: 0 0 18px rgba(212, 175, 55, 0.3);
+        }
+        .chamber-nav-link.active {
+            border-color: var(--primary-crimson);
+            background: rgba(170, 17, 17, 0.3);
+            box-shadow: 0 0 25px rgba(170, 17, 17, 0.5),
+                        inset 0 0 12px rgba(170, 17, 17, 0.2);
+            color: var(--accent-gold);
+        }
+        .chamber-nav-name {
+            display: block;
+            font-size: 0.85em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+        .chamber-nav-desc {
+            display: block;
+            font-family: 'IM Fell English', serif;
+            font-size: 0.75em;
+            font-style: italic;
+            color: var(--text-muted);
+            line-height: 1.4;
+            letter-spacing: 0;
+            text-transform: none;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.35s ease,
+                        opacity 0.35s ease,
+                        margin-top 0.35s ease;
+            margin-top: 0;
+        }
+        .chamber-nav-link:hover .chamber-nav-desc,
+        .chamber-nav-link.active .chamber-nav-desc {
+            max-height: 4em;
+            opacity: 1;
+            margin-top: 0.5em;
+        }
+        @media (max-width: 768px) {
+            .chamber-nav-list {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5em;
+                padding: 0 0.5em;
+            }
+            .chamber-nav-link {
+                min-width: unset;
+                width: 100%;
+                padding: 1em 1.2em;
+                text-align: left;
+            }
+            .chamber-nav-desc {
+                max-height: none;
+                opacity: 1;
+                margin-top: 0.4em;
+                overflow: visible;
+            }
+            .qliphoth-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script src="script.js"></script>
+
+    <!-- HEADER -->
+    <header>
+        <h1>The Black Flame</h1>
+        <p class="center-text">
+            <i>The innermost chamber.<br>
+            Enter with intention.</i>
+        </p>
+    </header>
+
+    <!-- CHAMBER NAVIGATION -->
+    <nav class="chamber-nav" aria-label="Site navigation">
+        <ul class="chamber-nav-list">
+            <li class="chamber-nav-item">
+                <a href="TheSanctum.html" class="chamber-nav-link">
+                    <span class="chamber-nav-name">The Sanctum</span>
+                    <span class="chamber-nav-desc">where I live — the main hall, the prayer, the reading list, everything that is me</span>
+                </a>
+            </li>
+            <li class="chamber-nav-item">
+                <a href="ThePriestessChamber.html" class="chamber-nav-link">
+                    <span class="chamber-nav-name">The Priestess Chamber</span>
+                    <span class="chamber-nav-desc">tarot as a mirror, not a crystal ball — readings, the weekly draw, shadow work</span>
+                </a>
+            </li>
+            <li class="chamber-nav-item">
+                <a href="TheBlackFlame.html" class="chamber-nav-link active">
+                    <span class="chamber-nav-name">The Black Flame</span>
+                    <span class="chamber-nav-desc">the innermost chamber — pathworking, devotional practice, the Qliphothic path</span>
+                </a>
+            </li>
+            <li class="chamber-nav-item">
+                <a href="TheHearthstone.html" class="chamber-nav-link">
+                    <span class="chamber-nav-name">The Hearthstone</span>
+                    <span class="chamber-nav-desc">the warm room — what I am reading, playing, thinking about, and figuring out right now</span>
+                </a>
+            </li>
+            <li class="chamber-nav-item">
+                <a href="TheDrawingRoom.html" class="chamber-nav-link">
+                    <span class="chamber-nav-name">The Drawing Room</span>
+                    <span class="chamber-nav-desc">where I make things — finished work, works in progress, honest notes about both</span>
+                </a>
+            </li>
+            <li class="chamber-nav-item">
+                <a href="Blogs.html" class="chamber-nav-link">
+                    <span class="chamber-nav-name">The Grimoire</span>
+                    <span class="chamber-nav-desc">where I write things down — thoughts, essays, whatever is asking to be said</span>
+                </a>
+            </li>
+            <li class="chamber-nav-item">
+                <a href="TheAbyssalGate.html" class="chamber-nav-link">
+                    <span class="chamber-nav-name">The Abyssal Gate</span>
+                    <span class="chamber-nav-desc">knock here if you want to reach me — contact, social links, all the ways in</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- SECTION 1: THE BLACK FLAME -->
+        <section class="flame-section" id="the-flame">
+            <h2 class="flame-title">The Black Flame</h2>
+            <div class="flame-placeholder">
+                <!-- ERIN FILLS THIS IN -->
+                This section holds Erin's own description of
+                what this practice is and what this page holds.
+                What the Black Flame means in her practice.
+                Why this chamber exists in the Halls.
+                Write as paragraphs using class="flame-body".
+                Her words only. No suggestions here.
+            </div>
+        </section>
+
+        <div class="flame-divider">✦ ── ✦ ── ✦</div>
+
+        <!-- SECTION 2: THE QLIPHOTHIC TREE -->
+        <section class="flame-section" id="the-tree">
+            <h2 class="flame-title">The Qliphothic Tree</h2>
+
+            <p class="flame-body">
+                The Qliphothic Tree — the Tree of Death, the
+                shadow structure beneath the Kabbalistic Tree
+                of Life — is the primary framework of this
+                practice. Ten spheres, each a quality of primal
+                power, each ruled by a demonic force, each
+                requiring direct confrontation and integration
+                rather than avoidance. The work moves sphere by
+                sphere, from the outermost to the innermost.
+                There is no shortcut through the tree.
+            </p>
+
+            <p class="flame-body">
+                Pathworking through the Qliphoth is not
+                invocation for its own sake. It is the systematic
+                dismantling of illusions about the self —
+                the qualities each sphere holds are not external
+                forces to be commanded but internal territories
+                to be mapped and inhabited. Lilith rules the
+                outer sphere. The work begins with her and
+                returns to her.
+            </p>
+
+            <div class="sphere-current">
+                <span class="sphere-label">Current Sphere</span>
+                <div class="sphere-name flame-placeholder">
+                    <!-- ERIN FILLS THIS IN: which Qliphothic sphere
+                    you are currently working in. Name and number. -->
+                    [Sphere name goes here]
+                </div>
+                <div class="sphere-desc flame-placeholder">
+                    <!-- ERIN FILLS THIS IN: a brief note on where
+                    you are in the work with this sphere. Not a full
+                    record — just the current state. Updated as the
+                    work progresses. -->
+                    Current work notes go here.
+                </div>
+            </div>
+
+            <div class="qliphoth-grid">
+
+                <div class="qliphoth-sphere">
+                    <span class="qliphoth-number">1 — Thaumiel</span>
+                    <div class="qliphoth-name">The Twin God</div>
+                    <div class="qliphoth-demon">Satan & Moloch</div>
+                    <p class="qliphoth-desc">
+                        The crown of the Qliphoth. Duality and
+                        division as the primal creative force.
+                        The sphere of absolute self-sovereignty.
+                    </p>
+                </div>
+
+                <div class="qliphoth-sphere">
+                    <span class="qliphoth-number">2 — Ghagiel</span>
+                    <div class="qliphoth-name">The Hinderers</div>
+                    <div class="qliphoth-demon">Beelzebub</div>
+                    <p class="qliphoth-desc">
+                        Disruption of established order. The force
+                        that breaks false structures to allow
+                        genuine understanding.
+                    </p>
+                </div>
+
+                <div class="qliphoth-sphere">
+                    <span class="qliphoth-number">3 — Sathariel</span>
+                    <div class="qliphoth-name">The Concealment of God</div>
+                    <div class="qliphoth-demon">Lucifuge Rofocale</div>
+                    <p class="qliphoth-desc">
+                        Hidden wisdom, the concealed aspects of
+                        reality. What is deliberately kept from
+                        the uninitiated.
+                    </p>
+                </div>
+
+                <div class="qliphoth-sphere">
+                    <span class="qliphoth-number">4 — Gha'agsheblah</span>
+                    <div class="qliphoth-name">The Smiters</div>
+                    <div class="qliphoth-demon">Astaroth</div>
+                    <p class="qliphoth-desc">
+                        Destructive power turned toward purification.
+                        The force that burns away what cannot survive
+                        honest examination.
+                    </p>
+                </div>
+
+                <div class="qliphoth-sphere">
+                    <span class="qliphoth-number">5 — Golachab</span>
+                    <div class="qliphoth-name">The Burning Bodies</div>
+                    <div class="qliphoth-demon">Asmodeus</div>
+                    <p class="qliphoth-desc">
+                        Primal will, desire, and power. The sphere
+                        of severity without restraint — confronting
+                        the rawest drives of the self.
+                    </p>
+                </div>
+
+                <div class="qliphoth-sphere">
+                    <span class="qliphoth-number">6 — Thagirion</span>
+                    <div class="qliphoth-name">The Disputers</div>
+                    <div class="qliphoth-demon">Belphegor</div>
+                    <p class="qliphoth-desc">
+                        The shadow of the sun — the black sun of
+                        Luciferian tradition. The integration of
+                        all contradictions into unified self-knowledge.
+                    </p>
+                </div>
+
+                <div class="qliphoth-sphere">
+                    <span class="qliphoth-number">7 — A'arab Zaraq</span>
+                    <div class="qliphoth-name">The Ravens of Dispersion</div>
+                    <div class="qliphoth-demon">Baal</div>
+                    <p class="qliphoth-desc">
+                        Chaotic beauty, desire as a transformative
+                        force. The scattering that precedes a new
+                        and truer integration.
+                    </p>
+                </div>
+
+                <div class="qliphoth-sphere">
+                    <span class="qliphoth-number">8 — Samael</span>
+                    <div class="qliphoth-name">The Poison of God</div>
+                    <div class="qliphoth-demon">Adrammelech</div>
+                    <p class="qliphoth-desc">
+                        The sphere of the deceiver and the falsifier —
+                        confronting the lies the self tells itself.
+                        Gnosis through the recognition of illusion.
+                    </p>
+                </div>
+
+                <div class="qliphoth-sphere">
+                    <span class="qliphoth-number">9 — Gamaliel</span>
+                    <div class="qliphoth-name">The Obscene Ones</div>
+                    <div class="qliphoth-demon">Lilith</div>
+                    <p class="qliphoth-desc">
+                        The sphere of Lilith. The primal feminine
+                        shadow, the dark moon, the unconscious
+                        made manifest. The work begins here.
+                    </p>
+                </div>
+
+                <div class="qliphoth-sphere">
+                    <span class="qliphoth-number">10 — Nehemoth</span>
+                    <div class="qliphoth-name">The Whisperers</div>
+                    <div class="qliphoth-demon">Naamah</div>
+                    <p class="qliphoth-desc">
+                        The outermost shell. The first contact
+                        with the Qliphothic current. The sphere
+                        of Naamah, sister of Lilith.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <div class="flame-divider">✦ ── ✦ ── ✦</div>
+
+        <!-- SECTION 3: WHAT LILITH ASKS -->
+        <section class="flame-section" id="the-questions">
+            <h2 class="flame-title">What Lilith Asks</h2>
+
+            <p class="flame-body">
+                A fixed line of questions used in devotional
+                tarot practice. These are not reading questions
+                for clients. They are the questions this practice
+                returns to — what Lilith asks when you sit with
+                her and pull the cards with intention.
+            </p>
+
+            <p class="flame-body">
+                Each question corresponds to a card position.
+                The spread is Erin's own. The questions are hers.
+            </p>
+
+            <ol class="questions-list">
+
+                <li>
+                    <span class="question-text flame-placeholder">
+                        <!-- ERIN FILLS THIS IN: Question I -->
+                        Your first devotional question goes here.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="question-text flame-placeholder">
+                        <!-- ERIN FILLS THIS IN: Question II -->
+                        Your second devotional question goes here.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="question-text flame-placeholder">
+                        <!-- ERIN FILLS THIS IN: Question III -->
+                        Your third devotional question goes here.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="question-text flame-placeholder">
+                        <!-- ERIN FILLS THIS IN: Question IV -->
+                        Your fourth devotional question goes here.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="question-text flame-placeholder">
+                        <!-- ERIN FILLS THIS IN: Question V -->
+                        Your fifth devotional question goes here.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="question-text flame-placeholder">
+                        <!-- ERIN FILLS THIS IN: Question VI -->
+                        Add or remove list items to match the exact
+                        number of questions in your spread.
+                        Each question gets its own li element.
+                    </span>
+                </li>
+
+            </ol>
+
+        </section>
+
+        <div class="flame-divider">✦ ── ✦ ── ✦</div>
+
+        <!-- SECTION 4: THE PATHWORKING RECORD -->
+        <section class="flame-section" id="pathworking-record">
+            <h2 class="flame-title">The Pathworking Record</h2>
+
+            <p class="flame-body">
+                Field notes from significant inner journeys.
+                Not every session. Only the ones that surfaced
+                something worth recording. Updated when moved
+                to update it — not on any schedule.
+            </p>
+
+            <p class="flame-body">
+                Each entry names the date in Holocene Era format,
+                the sphere being worked, and the notes themselves
+                in Erin's own words. Nothing is interpreted or
+                cleaned up for a reader. These are working notes.
+            </p>
+
+            <!-- ENTRY TEMPLATE — copy for each record:
+            <div class="record-entry">
+                <span class="record-date">
+                    [Month Day, 12026 HE]
+                </span>
+                <div class="record-sphere">
+                    [Sphere name — e.g. Gamaliel / Lilith]
+                </div>
+                <p class="record-notes">
+                    [Erin's field notes from this session.
+                    Her words exactly as she recorded them.
+                    No editing. No explanation for visitors.
+                    Just the notes.]
+                </p>
+            </div>
+            -->
+
+            <div class="flame-placeholder">
+                <!-- ERIN FILLS THIS IN -->
+                The record is empty. The first entry appears
+                here when Erin is ready to add it.
+                Copy the ENTRY TEMPLATE above for each session.
+                Date in HE format. Sphere name. Your notes.
+                Nothing needs to be polished for a reader.
+                These are your working notes, made visible.
+            </div>
+
+        </section>
+
+        <div class="flame-divider">✦ ── ✦ ── ✦</div>
+
+        <!-- SECTION 5: ON THE PATH -->
+        <section class="flame-section" id="on-the-path">
+            <h2 class="flame-title">On The Path</h2>
+            <div class="flame-placeholder">
+                <!-- ERIN FILLS THIS IN -->
+                This section holds Erin's permanent written
+                piece about what the Luciferian pursuit of
+                knowledge means to her specifically.
+                What drew her to the Left-Hand Path.
+                What the mystery school has opened.
+                What Lilith has asked of her that she has
+                said yes to. Why this path and not another.
+                Write as paragraphs using class="flame-body".
+                This is not a public explanation of Luciferianism.
+                It is a personal account of Erin's path.
+                Write it when ready. It can be updated as
+                the path deepens.
+            </div>
+        </section>
+    </main>
+
+    <!-- SOCIAL NAVIGATION -->
+    <nav class="social-nav" aria-label="Social media links">
+        <a href="https://www.threads.com/@erinofotherworld?__pwa=1"
+           target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src="images/ThreadsLogo.png"
+                 alt="Threads">
+        </a>
+        <a href="https://fetlife.com/NaszriteSin"
+           target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src="images/FetLife1.png"
+                 alt="FetLife">
+        </a>
+        <a href="https://signal.me/#eu/29xMRCXdjUzc_33p4QREeYGRYf-BYCHfuNMosfd0rIVAhnx7sDVI452jrwJ7LAry"
+           target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src="images/SignalChat1.png"
+                 alt="Signal">
+        </a>
+        <a href="https://substack.com/@erinofotherworldscrh001"
+           target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src="images/SubstackLogo.png"
+                 alt="Substack">
+        </a>
+        <a href="https://discord.gg/WGBBBNuubU"
+           target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src="images/DiscordLogo1.png"
+                 alt="Discord">
+        </a>
+    </nav>
+
+    <!-- AUDIO PLAYER -->
+    <div class="audio-player"
+         data-title="The Restless Shadow"
+         data-artist="SUNO"
+         data-art="images/LuciNLilithMeet.jpg">
+        <audio id="site-audio" loop>
+            <source src="audio/TheRestlessShadows.mp3"
+                    type="audio/mpeg">
+        </audio>
+        <div class="meta-and-art">
+            <img class="album-art"
+                 src="images/LuciNLilithMeet.jpg"
+                 alt="Album art">
+            <div class="meta">
+                <div class="song-title">The Restless Shadow</div>
+                <div class="artist">SUNO</div>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="prev" aria-label="previous">⏮️</button>
+            <button class="play" aria-label="play">Play</button>
+            <button class="pause" aria-label="pause">Pause</button>
+            <button class="stop" aria-label="stop">Stop</button>
+            <button class="next" aria-label="next">⏭️</button>
+            <label class="volume-label" for="volume-range">
+                Volume
+            </label>
+            <input id="volume-range" class="volume"
+                   type="range" min="0" max="1"
+                   step="0.01" value="1" aria-label="volume">
+        </div>
+        <div class="progress-container">
+            <input class="progress" type="range"
+                   min="0" max="100" step="0.1" value="0"
+                   aria-label="seek">
+        </div>
+        <div class="time" aria-live="polite">
+            00:00 / 00:00
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="center-text" style="color:darkred">
+        © 2025 Halls Of Hell Project: By Erin Nyght.
+        Artistic elemtents by Erin Nyght & Google Gemini
+        AI Generation. All art elements edited in Google's
+        SnapSeed & Infinate Painter by Erin Nyght
+        </p>
+        <img class="center-image" src="images/SafeSpace.png"
+             width="150" height="150"
+             alt="This is a 2SLGBTQIA Safe Space">
+    </footer>
+
+</body>
+</html>

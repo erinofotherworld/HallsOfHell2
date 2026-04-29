@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Sanctum — the central hall of Erin Nyght's Digital Home. Devotional practice, the Lilith prayer, events, and the reading list. Halls of Hell.">
+    <title>The Sanctum — Halls of Hell</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="theme.css">
+    <style>
+        /* Page-specific styles for HallsOfHell2 */
+        .center-image {
+            display: block;
+            margin: 1.5em auto;
+        }
+        .center-text {
+            text-align: center;
+        }
+        .right-now {
+            margin: 2em 0;
+            padding: 1.5em;
+            background: rgba(139, 0, 0, 0.08);
+            border-left: 3px solid var(--primary-crimson);
+        }
+        .devotional {
+            margin: 2em 0;
+        }
+        .devotional-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3em;
+            letter-spacing: 0.1em;
+            margin: 1.5em 0 1em 0;
+            color: var(--accent-gold);
+        }
+        .devotional-prayer {
+            text-align: left;
+            margin: 1.5em 2em;
+            padding: 1em;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--primary-crimson);
+        }
+        .devotional-prayer p {
+            line-height: 1.8;
+            margin: 0.8em 0;
+        }
+        .devotional-signature {
+            text-align: center;
+            font-style: italic;
+            color: var(--accent-gold);
+            margin: 1em 0;
+        }
+        .poem-left {
+            margin: 1.5em 0 1.5em 2em;
+            padding: 1em;
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 3px solid var(--accent-gold);
+        }
+        .poem-left p {
+            line-height: 1.8;
+            margin: 0.5em 0;
+        }
+        .calendar {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: var(--primary-crimson);
+            border: 2px solid var(--primary-crimson);
+            margin: 1.5em auto;
+        }
+        .calendar caption {
+            color: var(--primary-crimson);
+            font-size: 1.5em;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .calendar thead,
+        .calendar tbody {
+            text-align: center;
+        }
+        .calendar th,
+        .calendar td {
+            border: 1px solid var(--primary-crimson);
+            padding: 10px;
+        }
+        .calendar thead th {
+            background-color: rgba(139, 0, 0, 0.2);
+            font-family: 'Cinzel', serif;
+        }
+        .book-item {
+            margin: 1em 1.5em;
+            padding: 0.75em;
+            border-left: 2px solid var(--accent-gold);
+            padding-left: 1em;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--primary-crimson);
+        }
+        .book-author {
+            font-style: italic;
+            color: var(--accent-gold);
+            font-size: 0.95em;
+        }
+
+/* ===== CHAMBER NAVIGATION ===== */
+
+.chamber-nav {
+  margin: 2em 0;
+  padding: 0;
+}
+
+.chamber-nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chamber-nav-item {
+  position: relative;
+}
+
+/* The link itself — desktop default */
+.chamber-nav-link {
+  display: block;
+  padding: 0.75em 1.4em;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  border: 1px solid var(--border-crimson);
+  background: rgba(10, 6, 8, 0.6);
+  color: var(--accent-gold);
+  transition: all 0.3s ease;
+  position: relative;
+  text-align: center;
+  min-width: 140px;
+}
+
+.chamber-nav-link:hover {
+  border-color: var(--accent-gold);
+  background: rgba(170, 17, 17, 0.2);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.3);
+}
+
+/* Active page indicator */
+.chamber-nav-link.active {
+  border-color: var(--accent-gold);
+  background: rgba(170, 17, 17, 0.3);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.4),
+              inset 0 0 12px rgba(170, 17, 17, 0.2);
+  color: var(--accent-gold);
+}
+
+/* Chamber name — always visible */
+.chamber-nav-name {
+  display: block;
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+/* Chamber description — DESKTOP: hidden until hover */
+.chamber-nav-desc {
+  display: block;
+  font-family: 'IM Fell English', serif;
+  font-size: 0.75em;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease,
+              opacity 0.35s ease,
+              margin-top 0.35s ease;
+  margin-top: 0;
+}
+
+/* Reveal description on hover — desktop */
+.chamber-nav-link:hover .chamber-nav-desc,
+.chamber-nav-link.active .chamber-nav-desc {
+  max-height: 4em;
+  opacity: 1;
+  margin-top: 0.5em;
+}
+
+/* MOBILE: descriptions always visible */
+@media (max-width: 768px) {
+
+  .chamber-nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5em;
+    padding: 0 0.5em;
+  }
+
+  .chamber-nav-link {
+    min-width: unset;
+    width: 100%;
+    padding: 1em 1.2em;
+    text-align: left;
+  }
+
+.chamber-nav-name {
+    font-size: 0.9em;
+  }
+
+  .chamber-nav-desc {
+    max-height: none;
+    opacity: 1;
+    margin-top: 0.4em;
+    font-size: 0.8em;
+    overflow: visible;
+  }
+
+  /* Remove transition on mobile — instant display */
+  .chamber-nav-link:hover .chamber-nav-desc,
+  .chamber-nav-link.active .chamber-nav-desc {
+    max-height: none;
+  }
+}
+
+/* ===== END CHAMBER NAVIGATION ===== */
+    </style>
+</head>
+<body>
+    <!-- Content Warning Modal & Global Scripts -->
+    <script src="script.js"></script>
+
+    <!-- Header -->
+    <header>
+        <img src="images/HallsOfHell3.png" width="900" height="700" class="center-image" alt="Halls of Hell">
+        <p class="center-text"><b><i>Hail Lilith! Hail Lucifer! Hail Thyself! May the Infernal Flames of this realm keep, guide, &amp; heal you.</i></b></p>
+        <p class="center-text"><i>If you come here looking within for any Hope: I offer none. There is nothing more here than what you grant yourself in your own light - as seen in a mirror</i></p>
+    </header>
+
+    <!-- Navigation as Ritual Chambers -->
+    <nav class="chamber-nav" aria-label="Site navigation">
+      <ul class="chamber-nav-list">
+        <li class="chamber-nav-item">
+          <a href="TheSanctum.html" class="chamber-nav-link active">
+            <span class="chamber-nav-name">The Sanctum</span>
+            <span class="chamber-nav-desc">where I live — the main hall, the prayer, the reading list, everything that is me</span>
+          </a>
+        </li>
+        <li class="chamber-nav-item">
+          <a href="TheAbyssalGate.html" class="chamber-nav-link">
+            <span class="chamber-nav-name">The Abyssal Gate</span>
+            <span class="chamber-nav-desc">knock here if you want to reach me — contact, social links, all the ways in</span>
+          </a>
+        </li>
+        <li class="chamber-nav-item">
+          <a href="ThePriestessChamber.html" class="chamber-nav-link">
+            <span class="chamber-nav-name">The Priestess Chamber</span>
+            <span class="chamber-nav-desc">tarot as a mirror, not a crystal ball — readings, the weekly draw, shadow work</span>
+          </a>
+        </li>
+        <li class="chamber-nav-item">
+          <a href="TheHearthstone.html" class="chamber-nav-link">
+            <span class="chamber-nav-name">The Hearthstone</span>
+            <span class="chamber-nav-desc">the warm room — what I am reading, playing, thinking about, and figuring out right now</span>
+          </a>
+        </li>
+        <li class="chamber-nav-item">
+          <a href="SundayWLilith.html" class="chamber-nav-link">
+            <span class="chamber-nav-name">Sunday with Lilith</span>
+            <span class="chamber-nav-desc">weekly devotional space — sitting with Lilith, the practice, what she is asking this week</span>
+          </a>
+        </li>
+        <li class="chamber-nav-item">
+          <a href="Blogs.html" class="chamber-nav-link">
+            <span class="chamber-nav-name">The Grimoire</span>
+            <span class="chamber-nav-desc">where I write things down — thoughts, essays, whatever is asking to be said</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Right Now / Currently Section -->
+        <section class="right-now">
+            <h3>At this moment:</h3>
+            <p>I am working on reworking my website... because depression has hit me hard. It hit me hard enough that if I didnt start reworking this site into something more like a Digital Home Website, I dont know if my interest would stay with any HTML projects.</p>
+        </section>
+
+        <!-- Mirror and Introduction -->
+        <img class="center-image" src="images/Demonic Mirror2.png" width="300" height="500" alt="a dark lantern is presented to you, do you light it?">
+        
+        <section>
+            <h2 class="center-text"><img class="center-image" src="images/DemonicFrameErin.png" width="1000" height="900" alt="I Am Erin Of OtherWorld"></h2>
+            <p class="center-text">Alright there, hello... I'm Erin Nyght.<img src="images/LilithSuccubusKiss.png" width="35" height="40" alt="this is a succubus kissing you"></p>
+            <p class="center-text">I am a Transgender Alt Goth Woman, Disciple of Lilith &amp; Lucifer, in that I am a Luciferian and a Disciple of the Dark Feminine. I an esoteric pathworker who works primarily in the shadows in shadow work. Whilst I am a Reiki Master and Practitioner, who also reads tarot as means of Psychological check in in the moment: I also realize that when it comes to careers I am in, I am at a dead end. But, this is changing as I am leaning HTML, CSS, and more using Programing Hub and on my own to develop marketable skills to aim to get a better career with. What I do from there... I'll cross that bridge when I get to it.</p>
+            <p class="center-text">But... this is me.</p>
+            <img class="center-image" src="images/UntitledDemonFrame2.png" width="325" height="550" alt="this is me.">
+            <p class="center-text"><i><u>*This picture was taken at Hanford California USA Renissaince Faire*</u></i></p>
+            <img class="center-image" src="images/DemonicSpacer2.png" width="400" height="200">
+            <img class="center-image" src="images/LuciLilith.png" width="700" height="900" alt="lilith's sigil and crown">
+        </section>
+
+        <!-- Daily Devotional Prayer to Lilith -->
+        <section class="devotional">
+            <p class="center-text" style="font-size: 30px"><b>Daily Divotional Prayer to Lilith.</b></p>
+            <p class="center-text" style="font-size: 25px"><i><u>Pathworking With Lilith</u></i></p>
+            <div class="poem-left" aria-label="poem">
+                <p style="color: var(--primary-crimson); margin: 0;">
+                    <i>
+                "A dried out oisis upon a shimmering grey desert, 
+                the full moon hangs silently in the midnight sky, 
+                the scent of Rose and Honey perfume breaks the still air,
+                shadows grow deeper whilst creeping along the sands in silence."
+                    </i>
+                </p>
+                <p style="color: var(--primary-crimson); margin-top: 0.5em;"><i>"Lilith."</i></p>
+            </div>
+            <p class="center-text" style="font-size: 25px;"><i><u>Prayer To Lilith</u></i></p>
+            <div class="poem-left" aria-label="poem">
+                <p style="color: var(--primary-crimson); margin: 0;">
+                    <i>
+                "Lilith, resplendent Goddess, powerfull mother,
+                you who commands armies against the oppressor,
+                your heart is emblazened with an endless passion.
+                No fear can touch you, no cowardice is yours.
+                With ebony hair darker than night,
+                your laughter shakes mountains,
+                your love brings all to their knees,
+                &amp; it is in your arms I feel nothing but saftey.
+                Oh Dark Rose; glorious flame of passion...
+                my queen: stand besides me as I battle through this life.
+                With your Unending might, guide me.
+                Bride of the first light, in your blazing heart,
+                I am given rebirth."
+                    </i>
+                </p>
+            </div>
+            <p class="center-text" style="font-size: 25px;"><i><u>Lilith Asks</u></i></p>
+            <div class="poem-left" aria-label="poem">
+                <p style="color: var(--primary-crimson); margin: 0;">
+                    <i>
+                ~"In which ways do you need to break free from un necissary control today?"~
+                ~"In which ways do you need to reconnect with the part of yourself you were told was too "wild", too "uncontrolable?"~
+                    </i>
+                </p>
+            </div>
+            <img class="center-image" src="images/LilithSuccubusKiss.png" width="125" height="125" alt="kiss kiss">
+        </section>
+
+        <!-- Events Calendar Section -->
+        <section>
+            <img class="center-image" src="images/DemonicSpacer2.png" width="400" height="200">
+            <h3 class="center-text"><img class="center-image" src="images/DemonicFrame3.png" width="900" height="500" alt="theres are whats coming up"></h3>
+            <p class="center-text">Most of what I do, I started with working Renaissance Fairs as a Reiki Practitioner and Energy Healer.</p>
+            <p class="center-text">Because I travel from event to event alot, even with the current direction to settle with the carreer change, this section contains a list of up coming updates and a calander of events and Ren Fairs I am looking to attend in the nearby future. As part of this continual project under development, a list of all Pagan and Luciferian Holidays will be listed within.</p>
+            <p class="center-text">As this is a 2SLGBTQIA safe space; a Pagan and Luciferian/Satanic space... no Christian Holidays or any remnants of Imperialistic holidays are Welcome this is a people centric space. Spiritual Imperialism is not, and will never be, welcome here. For example: in the USA almost all holidays are Bank holidays that ignore the worker. I do not agree with this, so it is not a part of my site... period.</p>
+            
+            <div id="pagan-calendar-container"></div>
+
+            <p class="center-text" style="color: var(--primary-crimson);"><b><u>Upcoming Events &amp; Special Events</u></b></p>
+            <div style="margin: 20px auto; max-width: 800px;">
+                <table class="calendar">
+                    <tr>
+                        <td><b><u>Date &amp; Time</u></b></td>
+                        <td><b><u>Event Details</u></b></td>
+                    </tr>
+                    <tr>
+                        <td>Feb 15th</td>
+                        <td>Lupercallia Celebration</td>
+                    </tr>
+                    <tr>
+                        <td>April 8th - May 7th</td>
+                        <td>Fair Season Begins: Vicellia &amp; Escondido</td>
+                    </tr>
+                    <tr>
+                        <td>April 30th</td>
+                        <td>Walpurgisnacht Celebration</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
+            <h4 class="center-text"><img class="center-image" src="images/DemonicFrame4.png" width="900" height="500" alt="its cold this time of year"></h4>
+            <p class="center-text" style="color: var(--primary-crimson);"><b><u><i>*Lupercallia Celebration, 15th of Febuary 12026HE:</i></u></b> - <i>Lupercallia Celebration:</i> Lupercallia is an ancient Roman festival celebrated on February 15th, dedicated to Lupercus, the god of fertility and shepherds. The festival is marked by rituals intended to purify the city and promote fertility among its inhabitants. Participants, often dressed in goat skins, would run through the streets, striking people with strips of goat hide, believed to bring fertility and ward off evil spirits.</p>
+            <p class="center-text" style="color: var(--primary-crimson);">For Luciferians and Satanists, Lupercallia can be seen as a celebration of life's primal forces, the wild and untamed aspects of nature, and the embrace of one's own desires and instincts as part of the natural order. It is a time to honor the cycles of life, death, and rebirth, and to connect with the raw energy that drives existence - but with less striking people with goat skins... thats a tad weird to this wee lass, mmm'kay?</p>
+            <p class="center-text" style="color: var(--primary-crimson);"><b><u><i>*Walpurgisnacht Celebration, 30th of April 12026HE:</i></u></b> An older Northern European festival celebrated on the night of April 30th, Walpurgisnacht is associated with the arrival of spring and the warding off of evil spirits. Traditionally, it is believed that witches gather on this night to celebrate and perform rituals. The festival often includes bonfires, dancing, and various festivities to welcome the changing season. Its not unlike Beltane in many regards, the tradition stems with Walpurgis, an 8th-century abbess who was later canonized as a saint who was known for her healing abilities and protection against witchcraft.</p>
+            <p class="center-text" style="color: var(--primary-crimson);">Luciferians and Satanists may view Walpurgisnacht as a celebration of personal freedom, the rejection of societal norms, and the embrace of one's own path. It is a time to honor the transformative power of spring - the time when life return to the world - and to celebrate the strength and resilience of the individual spirit.</p>
+        </section>
+
+        <!-- Reading List Section -->
+        <section>
+            <img class="center-image" src="images/DemonicSpacer2.png" width="400" height="200">
+            <h5><img class="center-image" src="images/ReadingList1.png" width="900" height="700"></h5>
+            <p class="center-text" style="font-size: 30px;"><b><u>This is my personal reading list: Kindle &amp; .PDFs.</u></b></p>
+            <p class="center-text" style="font-size: 20px;"><i><u>Both read and TBR</u></i></p>
+            
+            <p><img src="images/DemonArrow2.png" width="75" height="25">The Satanic Bible: <i>Anton Salazar Lavey.</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">The Infernal Gospels: <i>Rev. Cain</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Lilith: Goddess of Sitra Ahra: <i>Black Tower Publishing</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Lilith's Bible Vol 1: <i>Mosheh Ely</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">The Lesser Key Of Solomon: <i>S.L. MacGregor Mathers &amp; Aleister Crowley</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Embracing Lilith: <i>Mark H. Williams</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Lilith: Goddess of Darkness and Light: <i>David Thompson</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Lucifer And The Hidden Demons: <i>Thodore Rose</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Goetia Pathworking: <i>Corwin Hargrove</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Demon Queen Naamah: <i>Nyx Corven</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Demon Queen Agrat: <i>Nyx Corven</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Samael: The Poison of God: <i>Nyx Corven</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Pathworking With Lilith: <i>Moshe Ely</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Luciferian Bible: <i>Eugene Dik</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Daemonium Paimon: <i>Seth Helix</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Asmodeus: Prince of Lust and Wrath: <i>Seth Helix</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Tree Of Qliphoth: <i>Edited by Asenath Mason</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Sex Priestess: <i>Nadine Lee</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">The Filthy Grimorie: <i>Jareth Tempest</i></p>
+            <p><img src="images/DemonArrow2.png" width="75" height="25">Sex, Sorcery, And Spirit: <i>Jason Miller</i></p>
+            
+            <p class="center-text" style="font-size: 18px;">More entries will be added to this list as time goes on along this journey into the Left Hand Path (LHP) continues.</p>
+        </section>
+
+    </main>
+
+    <!-- Social Links Footer Navigation -->
+    <img class="center-image" src="images/NaszriteSinHandle.png" width="500" height="700" alt="sigil of Naamah">
+    <nav class="social-nav" aria-label="Social media and contact links">
+        <p style="color: var(--text-muted); margin-bottom: 1em; font-size: 0.9em; text-align: center;">Find me in the shadows:</p>
+        <div style="text-align: center;">
+            <a href="https://www.threads.com/@erinofotherworld?__pwa=1" target="_blank" rel="noopener noreferrer" aria-label="Threads">
+                <img class="social-icon" src="images/ThreadsLogo.png" alt="Threads logo" style="width: 48px; height: 48px; margin: 0 0.5em;">
+            </a>
+            <a href="https://fetlife.com/NaszriteSin" target="_blank" rel="noopener noreferrer" aria-label="FetLife">
+                <img class="social-icon" src="images/FetLife1.png" alt="FetLife logo" style="width: 48px; height: 48px; margin: 0 0.5em;">
+            </a>
+            <a href="https://signal.me/#eu/29xMRCXdjUzc_33p4QREeYGRYf-BYCHfuNMosfd0rIVAhnx7sDVI452jrwJ7LAry" target="_blank" rel="noopener noreferrer" aria-label="Signal">
+                <img class="social-icon" src="images/SignalChat1.png" alt="Signal logo" style="width: 48px; height: 48px; margin: 0 0.5em;">
+            </a>
+            <a href="https://substack.com/@erinofotherworldscrh001?utm_source=user-menu" target="_blank" rel="noopener noreferrer" aria-label="Substack">
+                <img class="social-icon" src="images/SubstackLogo.png" alt="Substack logo" style="width: 48px; height: 48px; margin: 0 0.5em;">
+            </a>
+            <a href="https://discord.gg/WGBBBNuubU" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+                <img class="social-icon" src="images/DiscordLogo1.png" alt="Discord logo" style="width: 48px; height: 48px; margin: 0 0.5em;">
+            </a>
+        </div>
+    </nav>
+
+    <!-- Audio Player Ritual Artifact -->
+    <div class="audio-player" aria-label="site audio player" style="margin: 2em 0; padding: 1.5em; background: rgba(139, 0, 0, 0.1); border: 1px solid rgba(201, 168, 76, 0.3); text-align: center; border-radius: 2px;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 1.5em; margin-bottom: 1.5em; flex-wrap: wrap;">
+            <img class="album-art" src="images/LuciNLilithMeet.jpg" alt="Album art" style="width: 120px; height: 120px; border: 2px solid var(--accent-gold);">
+            <div style="text-align: left;">
+                <div class="song-title" style="font-family: 'Cinzel', serif; font-weight: 600; color: var(--accent-gold); font-size: 1.1em;">The Restless Shadow</div>
+                <div class="artist" style="color: var(--text-muted); font-size: 0.9em; margin-top: 0.3em;">SUNO</div>
+            </div>
+        </div>
+        <audio id="site-audio" preload="metadata">
+            <source src="audio/TheRestlessShadow.mp3" type="audio/mpeg">
+        </audio>
+        <div style="margin: 1em 0;">
+            <div class="time" style="display: flex; align-items: center; justify-content: center; gap: 0.5em; margin-bottom: 1em;">
+                <span style="font-size: 0.85em; color: var(--text-muted); min-width: 40px; text-align: right;" class="current-time">0:00</span>
+                <input type="range" class="progress" id="site-progress" min="0" max="100" value="0" style="flex: 1; max-width: 300px;">
+                <span style="font-size: 0.85em; color: var(--text-muted); min-width: 40px;">0:00</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 1em; margin-bottom: 1em;">
+                <button class="prev" id="site-prev" style="background: none; border: 1px solid var(--accent-gold); color: var(--accent-gold); padding: 0.5em 0.8em; font-family: 'Cinzel', serif; cursor: pointer; transition: all 0.3s;" title="Previous">⏮</button>
+                <button class="play" id="site-play" style="background: none; border: 1px solid var(--accent-gold); color: var(--accent-gold); padding: 0.5em 1em; font-family: 'Cinzel', serif; cursor: pointer; transition: all 0.3s;" title="Play">PLAY</button>
+                <button class="pause" id="site-pause" style="background: none; border: 1px solid var(--accent-gold); color: var(--accent-gold); padding: 0.5em 1em; font-family: 'Cinzel', serif; cursor: pointer; transition: all 0.3s; display: none;" title="Pause">PAUSE</button>
+                <button class="stop" id="site-stop" style="background: none; border: 1px solid var(--accent-gold); color: var(--accent-gold); padding: 0.5em 0.8em; font-family: 'Cinzel', serif; cursor: pointer; transition: all 0.3s;" title="Stop">⏹</button>
+                <button class="next" id="site-next" style="background: none; border: 1px solid var(--accent-gold); color: var(--accent-gold); padding: 0.5em 0.8em; font-family: 'Cinzel', serif; cursor: pointer; transition: all 0.3s;" title="Next">⏭</button>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 0.8em;">
+                <label for="site-volume" style="font-size: 0.9em;">🔊</label>
+                <input type="range" class="volume" id="site-volume" min="0" max="100" value="70" style="width: 150px;">
+                <span style="font-size: 0.85em; color: var(--text-muted); min-width: 40px;" id="site-volume-percent">70%</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; margin-top: 3em; padding: 2em 0; border-top: 2px solid var(--primary-crimson);">
+        <p style="color: var(--text-muted); font-size: 0.9em;">&copy; 2025 Halls Of Hell Project: By Erin Nyght. Artistic elemtents by Erin Nyght &amp; Google Gemini AI Generation. All art elements edited in Google's SnapSeed &amp; Infinate Painter by Erin Nyght</p>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 1.5em;">
+            <img src="images/SafeSpace.png" width="150" height="150" alt="This is a 2SLGBTQIA Safe Space">
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Drawing Room — Erin Nyght's art gallery. Sketch, pencil, colored pencil, pen and paper. Finished pieces with honest notes. Halls of Hell.">
+    <title>The Drawing Room — Halls of Hell</title>
+    <link rel="stylesheet" href="theme.css">
+    <style>
+        .drawing-section {
+            background: rgba(22, 14, 10, 0.55);
+            border-left: 3px solid var(--accent-gold);
+            padding: 2.5em;
+            margin-bottom: 3em;
+            border-radius: 2px;
+            transition: box-shadow 0.4s ease;
+        }
+        .drawing-section:hover {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.12);
+        }
+        .drawing-title {
+            font-family: 'Cinzel', serif;
+            text-transform: none;
+            color: var(--accent-gold);
+            font-size: 1.5em;
+            letter-spacing: 0.06em;
+            margin-bottom: 1.2em;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 0.5em;
+        }
+        .drawing-body {
+            font-size: 1.05em;
+            line-height: 1.9;
+            color: var(--text-light);
+            margin-bottom: 1em;
+        }
+        .drawing-placeholder {
+            display: block;
+            padding: 1.2em;
+            background: rgba(212, 175, 55, 0.04);
+            border: 1px dashed rgba(212, 175, 55, 0.25);
+            color: var(--text-muted);
+            font-style: italic;
+            font-size: 0.88em;
+            border-radius: 2px;
+            margin: 0.8em 0;
+        }
+        .drawing-divider {
+            text-align: center;
+            color: var(--accent-gold);
+            opacity: 0.3;
+            margin: 1em 0 2.5em 0;
+            letter-spacing: 0.4em;
+            font-size: 0.9em;
+        }
+        .wip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.2em;
+            margin: 1.5em 0;
+        }
+        .wip-item {
+            background: rgba(10, 6, 8, 0.5);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 1.4em;
+            transition: border-color 0.3s ease;
+        }
+        .wip-item:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+        .wip-status {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7em;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--primary-rose);
+            margin-bottom: 0.5em;
+            display: block;
+        }
+        .wip-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1em;
+            color: var(--accent-gold);
+            margin-bottom: 0.6em;
+            font-style: italic;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2em;
+            margin: 2em 0;
+        }
+        .gallery-piece {
+            display: flex;
+            flex-direction: column;
+            background: rgba(8, 5, 6, 0.7);
+            cursor: zoom-in;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-piece:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6),
+                        0 0 20px rgba(212, 175, 55, 0.15);
+        }
+        .piece-mat {
+            background: #0d0a0b;
+            padding: 1.2em;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            overflow: hidden;
+        }
+        .piece-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .gallery-piece:hover .piece-image {
+            transform: scale(1.03);
+        }
+        .piece-caption {
+            padding: 1em 1.2em 1.4em;
+        }
+        .piece-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1em;
+            color: var(--accent-gold);
+            margin-bottom: 0.25em;
+            font-style: italic;
+        }
+        .piece-meta {
+            font-size: 0.78em;
+            color: var(--text-muted);
+            margin-bottom: 0.7em;
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .piece-note {
+            font-size: 0.88em;
+            line-height: 1.7;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        .sketchbook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.2em;
+            margin: 1.5em 0;
+        }
+        .sketch-item {
+            background: #0d0a0b;
+            padding: 0.8em;
+            cursor: zoom-in;
+            transition: all 0.3s ease;
+        }
+        .sketch-item:hover {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+        .sketch-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .sketch-caption {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65em;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 0.5em;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .chamber-nav {
+            margin: 2em 0;
+            padding: 0;
+        }
+        .chamber-nav-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75em;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .chamber-nav-item {
+            position: relative;
+        }
+        .chamber-nav-link {
+            display: block;
+            padding: 0.75em 1.4em;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            border: 1px solid var(--border-crimson);
+            background: rgba(10, 6, 8, 0.6);
+            color: var(--accent-gold);
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 140px;
+        }
+        .chamber-nav-link:hover {
+            border-color: var(--accent-gold);
+            background: rgba(170, 17, 17, 0.2);
+            box-shadow: 0 0 18px rgba(212, 175, 55, 0.3);
+        }
+        .chamber-nav-link.active {
+            border-color: var(--accent-gold);
+            background: rgba(170, 17, 17, 0.3);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4),
+                        inset 0 0 12px rgba(170, 17, 17, 0.2);
+        }
+        .chamber-nav-name {
+            display: block;
+            font-size: 0.85em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+        .chamber-nav-desc {
+            display: block;
+            font-family: 'IM Fell English', serif;
+            font-size: 0.75em;
+            font-style: italic;
+            color: var(--text-muted);
+            line-height: 1.4;
+            letter-spacing: 0;
+            text-transform: none;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.35s ease,
+                        opacity 0.35s ease,
+                        margin-top 0.35s ease;
+            margin-top: 0;
+        }
+        .chamber-nav-link:hover .chamber-nav-desc,
+        .chamber-nav-link.active .chamber-nav-desc {
+            max-height: 4em;
+            opacity: 1;
+            margin-top: 0.5em;
+        }
+        .drawing-lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 2, 2, 0.97);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            cursor: zoom-out;
+            flex-direction: column;
+            gap: 1em;
+            animation: lbFadeIn 0.25s ease;
+        }
+        @keyframes lbFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .drawing-lightbox img {
+            max-width: 92vw;
+            max-height: 82vh;
+            height: auto;
+            display: block;
+            box-shadow: 0 0 80px rgba(0, 0, 0, 0.9);
+        }
+        .drawing-lightbox-meta {
+            text-align: center;
+        }
+        .drawing-lightbox-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9em;
+            color: var(--accent-gold);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.25em;
+        }
+        .drawing-lightbox-note {
+            font-size: 0.82em;
+            color: var(--text-muted);
+            font-style: italic;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+        .drawing-lightbox-close {
+            position: absolute;
+            top: 1.5em;
+            right: 1.5em;
+            color: var(--text-muted);
+            font-size: 1.5em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'Cinzel', serif;
+            transition: color 0.2s ease;
+        }
+        .drawing-lightbox-close:hover {
+            color: var(--accent-gold);
+        }
+        @media (max-width: 768px) {
+            .chamber-nav-list {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5em;
+                padding: 0 0.5em;
+            }
+            .chamber-nav-link {
+                min-width: unset;
+                width: 100%;
+                padding: 1em 1.2em;
+                text-align: left;
+            }
+            .chamber-nav-desc {
+                max-height: none;
+                opacity: 1;
+                margin-top: 0.4em;
+                overflow: visible;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .sketchbook-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <script src="script.js"></script>
+
+    <!-- HEADER -->
+    <header>
+        <h1>The Drawing Room</h1>
+        <p class="center-text">
+            <i>Things made by hand, shown honestly.<br>
+            The work and the cost of making it.</i>
+        </p>
+    </header>
+
+    <!-- CHAMBER NAVIGATION -->
+    <nav class="chamber-nav" aria-label="Site navigation">
+        <ul class="chamber-nav-list">
+            <li class="chamber-nav-item">
+                <a href="TheSanctum.html" class="chamber-nav-link">
+                    <span class="chamber-nav-name">The Sanctum</span>
+                    <span class="chamber-nav-desc">where I live — the main hall, the prayer, the reading list, everything that is me</span>
+                </a>
+            </li>
+            <li class="chamber-nav-item">
+                <a href="TheAbyssalGate.html" class="chamber-nav-link">
+                    <span class="chamber-nav-name">The Abyssal Gate</span>
+                    <span class="chamber-nav-desc">knock here if you want to reach me — contact, social links, all the ways in</span>
+                </a>
+            </li>
+            <li class="chamber-nav-item">
+                <a href="ThePriestessChamber.html" class="chamber-nav-link">
+                    <span class="chamber-nav-name">The Priestess Chamber</span>
+                    <span class="chamber-nav-desc">tarot as a mirror, not a crystal ball — readings, the weekly draw, shadow work</span>
+                </a>
+            </li>
+            <li class="chamber-nav-item">
+                <a href="TheHearthstone.html" class="chamber-nav-link">
+                    <span class="chamber-nav-name">The Hearthstone</span>
+                    <span class="chamber-nav-desc">the warm room — what I am reading, playing, thinking about, and figuring out right now</span>
+                </a>
+            </li>
+            <li class="chamber-nav-item">
+                <a href="TheDrawingRoom.html" class="chamber-nav-link active">
+                    <span class="chamber-nav-name">The Drawing Room</span>
+                    <span class="chamber-nav-desc">where I make things — finished work, works in progress, honest notes about both</span>
+                </a>
+            </li>
+            <li class="chamber-nav-item">
+                <a href="SundayWLilith.html" class="chamber-nav-link">
+                    <span class="chamber-nav-name">Sunday with Lilith</span>
+                    <span class="chamber-nav-desc">weekly devotional space — sitting with Lilith, the practice, what she is asking this week</span>
+                </a>
+            </li>
+            <li class="chamber-nav-item">
+                <a href="Blogs.html" class="chamber-nav-link">
+                    <span class="chamber-nav-name">The Grimoire</span>
+                    <span class="chamber-nav-desc">where I write things down — thoughts, essays, whatever is asking to be said</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- SECTION 1: WHY THIS ROOM EXISTS -->
+        <section class="drawing-section" id="why-this-room">
+            <h2 class="drawing-title">Why This Room Exists</h2>
+            <div class="drawing-placeholder">
+                This section is waiting for Erin's words about
+                why she makes things and why she is showing them.
+                Write as paragraphs using class="drawing-body".
+                Honest. Does not need to be brave. Just true.
+            </div>
+        </section>
+
+        <div class="drawing-divider">✦ ─── ✦ ─── ✦</div>
+
+        <!-- SECTION 2: CURRENTLY ON THE DESK -->
+        <section class="drawing-section" id="on-the-desk">
+            <h2 class="drawing-title">Currently On The Desk</h2>
+            <p class="drawing-body">
+                What is being worked on right now. Updated when
+                something starts, stalls, finishes, or gets
+                abandoned. All of those are valid states.
+            </p>
+            <div class="wip-grid">
+                <div class="wip-item">
+                    <span class="wip-status">In Progress</span>
+                    <div class="wip-title">Untitled</div>
+                    <div class="drawing-placeholder">
+                        <!-- ERIN FILLS THIS IN: working title,
+                        medium, where it is in the process,
+                        how it is going. Honest notes only. -->
+                        Working title and notes go here.
+                    </div>
+                </div>
+                <div class="wip-item">
+                    <span class="wip-status">Stalled</span>
+                    <div class="wip-title">Untitled</div>
+                    <div class="drawing-placeholder">
+                        <!-- ERIN FILLS THIS IN -->
+                        Working title and notes go here.
+                    </div>
+                </div>
+                <div class="wip-item drawing-placeholder">
+                    Add more wip-item blocks here as needed.
+                    Status options: In Progress / Stalled /
+                    Nearly There / Abandoned / Surprising Me
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: THE GALLERY -->
+        <section class="drawing-section" id="the-gallery">
+            <h2 class="drawing-title">The Gallery</h2>
+            <p class="drawing-body">
+                Finished pieces. Each one has a title, the medium
+                it was made in, the year, and a note about what it
+                was like to make it. The notes are honest.
+                They are not technique explanations.
+            </p>
+            <div class="gallery-grid" id="drawing-gallery">
+
+                <!-- TEMPLATE — copy this block for each piece:
+
+                <figure class="gallery-piece"
+                        data-title="[Title]"
+                        data-note="[Process note text]">
+                    <div class="piece-mat">
+                        <img src="images/art/[filename]"
+                             alt="[Title]"
+                             class="piece-image"
+                             loading="lazy">
+                    </div>
+                    <figcaption class="piece-caption">
+                        <div class="piece-title">[Title]</div>
+                        <div class="piece-meta">
+                            [Medium] · [Year]
+                        </div>
+                        <div class="piece-note">
+                            [Honest process note in Erin's voice]
+                        </div>
+                    </figcaption>
+                </figure>
+
+                Images go in: images/art/
+                data-note appears in lightbox when piece is clicked.
+                -->
+
+                <div class="drawing-placeholder"
+                     style="grid-column: 1 / -1; padding: 3em;
+                            text-align: center;">
+                    The gallery is being hung.<br>
+                    Finished pieces will appear here
+                    as they are ready.
+                </div>
+
+            </div>
+        </section>
+
+        <div class="drawing-divider">✦ ─── ✦ ─── ✦</div>
+
+        <!-- SECTION 4: ON MAKING THINGS -->
+        <section class="drawing-section" id="on-making-things">
+            <h2 class="drawing-title">On Making Things</h2>
+            <div class="drawing-placeholder">
+                <!-- ERIN FILLS THIS IN: a short written reflection
+                on the practice of making art. What it means.
+                What it costs. What it gives back. Why she keeps
+                doing it even when it is hard. Not a manifesto.
+                Not an artist statement. Just Erin, in her own
+                words, about making things. Write as paragraphs
+                using class="drawing-body". Can be updated
+                whenever something shifts in how she thinks
+                about this. -->
+                Erin's reflection on making art goes here.
+                What it means. What it costs. Why it matters
+                even when it is hard. Her words only.
+            </div>
+        </section>
+
+        <!-- SECTION 5: THE SKETCHBOOK -->
+        <section class="drawing-section" id="the-sketchbook">
+            <h2 class="drawing-title">The Sketchbook</h2>
+            <p class="drawing-body">
+                Studies, quick sketches, things that were never
+                meant to be finished. Lower stakes than the gallery.
+                Sometimes the unfinished thing is the honest thing.
+            </p>
+            <div class="sketchbook-grid" id="sketchbook-grid">
+                <!-- Add sketch-item blocks here as sketches
+                are ready to show. Structure:
+                <div class="sketch-item">
+                    <img src="images/art/filename.jpg"
+                         alt="brief description" loading="lazy">
+                    <div class="sketch-caption">optional note</div>
+                </div> -->
+            </div>
+            <div class="drawing-placeholder">
+                The sketchbook is empty for now. Sketches,
+                studies, and quick drawings will live here
+                as they accumulate.
+            </div>
+        </section>
+    </main>
+
+    <!-- SOCIAL NAVIGATION -->
+    <nav class="social-nav" aria-label="Social media links">
+        <!-- Social nav placeholder -->
+        <a href="https://www.threads.com/@erinofotherworld?__pwa=1" target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src="images/ThreadsLogo.png" alt="Threads">
+        </a>
+        <a href="https://fetlife.com/NaszriteSin" target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src="images/FetLife1.png" alt="FetLife">
+        </a>
+        <a href="https://signal.me/#eu/29xMRCXdjUzc_33p4QREeYGRYf-BYCHfuNMosfd0rIVAhnx7sDVI452jrwJ7LAry" target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src="images/SignalChat1.png" alt="Signal">
+        </a>
+        <a href="https://substack.com/@erinofotherworldscrh001" target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src="images/SubstackLogo.png" alt="Substack">
+        </a>
+        <a href="https://discord.gg/WGBBBNuubU" target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src="images/DiscordLogo1.png" alt="Discord">
+        </a>
+    </nav>
+
+    <!-- AUDIO PLAYER -->
+    <div class="audio-player"
+         data-title="The Restless Shadow"
+         data-artist="SUNO"
+         data-art="images/LuciNLilithMeet.jpg">
+        <audio id="site-audio" loop>
+            <source src="audio/TheRestlessShadows.mp3" type="audio/mpeg">
+        </audio>
+        <div class="meta-and-art">
+            <img class="album-art"
+                 src="images/LuciNLilithMeet.jpg"
+                 alt="Album art">
+            <div class="meta">
+                <div class="song-title">The Restless Shadow</div>
+                <div class="artist">SUNO</div>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="prev" aria-label="previous">⏮️</button>
+            <button class="play" aria-label="play">Play</button>
+            <button class="pause" aria-label="pause">Pause</button>
+            <button class="stop" aria-label="stop">Stop</button>
+            <button class="next" aria-label="next">⏭️</button>
+            <label class="volume-label" for="volume-range">
+                Volume
+            </label>
+            <input id="volume-range" class="volume"
+                   type="range" min="0" max="1"
+                   step="0.01" value="1" aria-label="volume">
+        </div>
+        <div class="progress-container">
+            <input class="progress" type="range"
+                   min="0" max="100" step="0.1" value="0"
+                   aria-label="seek">
+        </div>
+        <div class="time" aria-live="polite">
+            00:00 / 00:00
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="center-text" style="color:darkred">
+        © 2025 Halls Of Hell Project: By Erin Nyght.
+        Artistic elemtents by Erin Nyght & Google Gemini
+        AI Generation. All art elements edited in Google's
+        SnapSeed & Infinate Painter by Erin Nyght
+        </p>
+        <img class="center-image" src="images/SafeSpace.png"
+             width="150" height="150"
+             alt="This is a 2SLGBTQIA Safe Space">
+    </footer>
+
+    <!-- LIGHTBOX SCRIPT -->
+    <script>
+(function() {
+  const gallery = document.getElementById('drawing-gallery');
+  if (!gallery) return;
+
+  function openLightbox(src, title, note) {
+    const lb = document.createElement('div');
+    lb.className = 'drawing-lightbox';
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.setAttribute('aria-label', title || 'Artwork');
+    lb.tabIndex = -1;
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'drawing-lightbox-close';
+    closeBtn.textContent = '✕';
+    closeBtn.setAttribute('aria-label', 'Close');
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = title || '';
+
+    const meta = document.createElement('div');
+    meta.className = 'drawing-lightbox-meta';
+
+    if (title) {
+      const t = document.createElement('div');
+      t.className = 'drawing-lightbox-title';
+      t.textContent = title;
+      meta.appendChild(t);
+    }
+
+    if (note && note.trim() &&
+        !note.includes('ERIN FILLS') &&
+        !note.includes('placeholder')) {
+      const n = document.createElement('div');
+      n.className = 'drawing-lightbox-note';
+      n.textContent = note;
+      meta.appendChild(n);
+    }
+
+    function closeLb() {
+      lb.remove();
+      document.removeEventListener('keydown', onKey);
+    }
+
+    function onKey(e) {
+      if (e.key === 'Escape') closeLb();
+    }
+
+    closeBtn.addEventListener('click', closeLb);
+    lb.addEventListener('click', e => {
+      if (e.target === lb) closeLb();
+    });
+    document.addEventListener('keydown', onKey);
+
+    lb.appendChild(closeBtn);
+    lb.appendChild(img);
+    lb.appendChild(meta);
+    document.body.appendChild(lb);
+    lb.focus();
+  }
+
+  gallery.querySelectorAll('.gallery-piece').forEach(fig => {
+    const img = fig.querySelector('.piece-image');
+    const titleEl = fig.querySelector('.piece-title');
+    const noteEl = fig.querySelector('.piece-note');
+    if (!img) return;
+
+    const title = fig.dataset.title ||
+                  (titleEl ? titleEl.textContent.trim() : '');
+    const note = fig.dataset.note ||
+                 (noteEl ? noteEl.textContent.trim() : '');
+
+    fig.addEventListener('click', () =>
+      openLightbox(img.src, title, note));
+
+    fig.setAttribute('tabindex', '0');
+    fig.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(img.src, title, note);
+      }
+    });
+  });
+
+  document.querySelectorAll('.sketch-item').forEach(item => {
+    const img = item.querySelector('img');
+    const cap = item.querySelector('.sketch-caption');
+    if (!img) return;
+
+    item.addEventListener('click', () =>
+      openLightbox(img.src,
+        cap ? cap.textContent.trim() : img.alt, ''));
+
+    item.setAttribute('tabindex', '0');
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(img.src,
+          cap ? cap.textContent.trim() : img.alt, '');
+      }
+    });
+  });
+})();
+    </script>
+
+</body>
+</html>

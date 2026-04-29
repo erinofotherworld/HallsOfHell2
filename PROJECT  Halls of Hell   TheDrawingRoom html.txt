@@ -1,0 +1,183 @@
+PROJECT: Halls of Hell — TheDrawingRoom.html
+PAGE NAME: The Drawing Room
+NAV LABEL: The Drawing Room
+FILE TO BUILD: TheDrawingRoom.html
+
+EXTERNAL FILES — never touch, never duplicate:
+  theme.css — all base styles, fonts, CSS variables
+  styles.css — modal, audio player components
+  script.js — content warning, audio player control,
+               nav active state, suggestion box
+
+CSS VARIABLES AVAILABLE FROM theme.css:
+  --bg-dark: #0a0608
+  --primary-crimson: #aa1111
+  --primary-rose: #c74a6f
+  --accent-gold: #d4af37
+  --text-light: #e8e0d5
+  --text-muted: #a89a8f
+  --border-crimson: #5a0a0a
+  Fonts: Cinzel (headings), IM Fell English (body)
+
+STRUCTURAL RULES — follow exactly, no exceptions:
+  First line inside <body>: <script src="script.js">
+  Order of elements inside <body>:
+    1. <script src="script.js"></script>
+    2. <header>
+    3. <nav class="chamber-nav">
+    4. <main>
+    5. <nav class="social-nav">
+    6. <div class="audio-player">
+    7. <footer>
+    8. Lightbox <script> IIFE
+    9. </body></html> — these are the LAST two lines
+
+EXACTLY FIVE SECTIONS inside <main> in this order:
+  1. class="drawing-section" id="why-this-room"
+  2. class="drawing-section" id="on-the-desk"
+  3. class="drawing-section" id="the-gallery"
+  4. class="drawing-section" id="on-making-things"
+  5. class="drawing-section" id="the-sketchbook"
+
+NAV — seven links in this exact order:
+  TheSanctum.html → "The Sanctum"
+    desc: "where I live — the main hall, the prayer,
+           the reading list, everything that is me"
+  TheAbyssalGate.html → "The Abyssal Gate"
+    desc: "knock here if you want to reach me —
+           contact, social links, all the ways in"
+  ThePriestessChamber.html → "The Priestess Chamber"
+    desc: "tarot as a mirror, not a crystal ball —
+           readings, the weekly draw, shadow work"
+  TheHearthstone.html → "The Hearthstone"
+    desc: "the warm room — what I am reading, playing,
+           thinking about, and figuring out right now"
+  TheDrawingRoom.html → "The Drawing Room"
+    desc: "where I make things — finished work,
+           works in progress, honest notes about both"
+  SundayWLilith.html → "Sunday with Lilith"
+    desc: "weekly devotional space — sitting with Lilith,
+           the practice, what she is asking this week"
+  Blogs.html → "The Grimoire"
+    desc: "where I write things down — thoughts,
+           essays, whatever is asking to be said"
+
+NAV HTML STRUCTURE — use exactly this pattern:
+  <nav class="chamber-nav" aria-label="Site navigation">
+    <ul class="chamber-nav-list">
+      <li class="chamber-nav-item">
+        <a href="[file]" class="chamber-nav-link [active]">
+          <span class="chamber-nav-name">[Name]</span>
+          <span class="chamber-nav-desc">[desc]</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  TheDrawingRoom.html link gets class="chamber-nav-link active"
+  All others get class="chamber-nav-link" only
+
+SOCIAL NAV — five icons in this order:
+  <a href="https://www.threads.com/@erinofotherworld?__pwa=1"
+     target="_blank" rel="noopener noreferrer">
+    <img class="social-icon" src="images/ThreadsLogo.png"
+         alt="Threads">
+  </a>
+  <a href="https://fetlife.com/NaszriteSin"
+     target="_blank" rel="noopener noreferrer">
+    <img class="social-icon" src="images/FetLife1.png"
+         alt="FetLife">
+  </a>
+  <a href="https://signal.me/#eu/29xMRCXdjUzc_33p4QREeYGRYf-BYCHfuNMosfd0rIVAhnx7sDVI452jrwJ7LAry"
+     target="_blank" rel="noopener noreferrer">
+    <img class="social-icon" src="images/SignalChat1.png"
+         alt="Signal">
+  </a>
+  <a href="https://substack.com/@erinofotherworldscrh001"
+     target="_blank" rel="noopener noreferrer">
+    <img class="social-icon" src="images/SubstackLogo.png"
+         alt="Substack">
+  </a>
+  <a href="https://discord.gg/WGBBBNuubU"
+     target="_blank" rel="noopener noreferrer">
+    <img class="social-icon" src="images/DiscordLogo1.png"
+         alt="Discord">
+  </a>
+
+AUDIO PLAYER — use exactly this structure:
+  <div class="audio-player"
+       data-title="The Restless Shadow"
+       data-artist="SUNO"
+       data-art="images/LuciNLilithMeet.jpg">
+    <audio id="site-audio" loop>
+      <source src="audio/TheRestlessShadows.mp3"
+              type="audio/mpeg">
+    </audio>
+    <div class="meta-and-art">
+      <img class="album-art"
+           src="images/LuciNLilithMeet.jpg"
+           alt="Album art">
+      <div class="meta">
+        <div class="song-title">The Restless Shadow</div>
+        <div class="artist">SUNO</div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="prev" aria-label="previous">⏮️</button>
+      <button class="play" aria-label="play">Play</button>
+      <button class="pause" aria-label="pause">Pause</button>
+      <button class="stop" aria-label="stop">Stop</button>
+      <button class="next" aria-label="next">⏭️</button>
+      <label class="volume-label" for="volume-range">
+        Volume
+      </label>
+      <input id="volume-range" class="volume"
+             type="range" min="0" max="1"
+             step="0.01" value="1" aria-label="volume">
+                 </div>
+    <div class="progress-container">
+      <input class="progress" type="range"
+             min="0" max="100" step="0.1" value="0"
+             aria-label="seek">
+    </div>
+    <div class="time" aria-live="polite">
+      00:00 / 00:00
+    </div>
+  </div>
+  NO audio JavaScript anywhere in the HTML file.
+  script.js handles all audio player behavior.
+
+FOOTER — use exactly this text, typos preserved:
+  <footer>
+    <p class="center-text" style="color:darkred">
+  © 2025 Halls Of Hell Project: By Erin Nyght.
+  Artistic elemtents by Erin Nyght & Google Gemini
+  AI Generation. All art elements edited in Google's
+  SnapSeed & Infinate Painter by Erin Nyght
+    </p>
+    <img class="center-image" src="images/SafeSpace.png"
+         width="150" height="150"
+         alt="This is a 2SLGBTQIA Safe Space">
+  </footer>
+
+PLACEHOLDER CLASS — use for all personal content:
+  class="drawing-placeholder"
+  Every placeholder must contain visible text
+  describing what Erin should write there.
+  Never leave a placeholder empty.
+
+DO NOT ADD:
+  - Any <script> tags except script.js and the
+    lightbox IIFE at the bottom
+  - Any audio JavaScript
+  - Any inline style="" attributes
+  - Any content invented for Erin's personal sections
+  - Any classes not defined in the page <style> block
+    or in theme.css
+
+DO NOT CHANGE once written in previous steps:
+  - The <style> block CSS
+  - The header text
+  - The nav structure
+  - Any section already completed
+  - The audio player structure
+  - The footer text

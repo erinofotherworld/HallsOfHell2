@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Hearthstone — 
+    the warm center of the Halls of Hell. Erin Nyght's 
+    personal reflection space.">
+  <title>The Hearthstone — Halls of Hell</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    /* Hearthstone page-specific styles only */
+    /* Warmer, quieter variation of the site theme */
+    /* Nothing that duplicates theme.css */
+
+    .hearth-section {
+      background-color: rgba(30, 18, 10, 0.5);
+      border-left: 3px solid var(--accent-gold);
+      padding: 2.5em;
+      margin-bottom: 3em;
+      border-radius: 2px;
+      transition: box-shadow 0.4s ease;
+    }
+
+    .hearth-section:hover {
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+    }
+
+    .hearth-title {
+      font-family: 'Cinzel', serif;
+      text-transform: none;
+      color: var(--accent-gold);
+      font-size: 1.5em;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.2em;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+      padding-bottom: 0.5em;
+    }
+
+    .hearth-body {
+      font-size: 1.05em;
+      line-height: 1.9;
+      color: var(--text-light);
+      margin-bottom: 1em;
+    }
+
+    .currently-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5em;
+      margin: 1.5em 0;
+    }
+
+    .currently-item {
+      background-color: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 1.2em;
+      border-radius: 2px;
+      transition: border-color 0.3s ease;
+    }
+
+    .currently-item:hover {
+      border-color: var(--accent-gold);
+    }
+
+    .currently-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75em;
+      color: var(--primary-rose);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.5em;
+      display: block;
+    }
+
+    .currently-value {
+      font-size: 1em;
+      color: var(--text-light);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .update-note {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75em;
+      color: var(--text-muted);
+      text-align: right;
+      margin-top: 1em;
+      letter-spacing: 0.05em;
+    }
+
+    .canon-item {
+      display: flex;
+      gap: 1.5em;
+      margin-bottom: 2em;
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(90, 10, 10, 0.3);
+      padding-bottom: 1.5em;
+    }
+
+    .canon-item:last-child {
+      border-bottom: none;
+    }
+
+    .canon-number {
+      font-family: 'Cinzel', serif;
+      font-size: 2em;
+      color: var(--border-crimson);
+      opacity: 0.6;
+      line-height: 1;
+      min-width: 1.5em;
+      flex-shrink: 0;
+    }
+
+    .canon-content {
+      flex: 1;
+    }
+
+    .canon-title {
+      font-family: 'Cinzel', serif;
+      color: var(--accent-gold);
+      font-size: 1.05em;
+      margin-bottom: 0.4em;
+    }
+
+    .canon-why {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      color: var(--text-light);
+      font-size: 0.95em;
+      line-height: 1.8;
+    }
+
+    .hearth-placeholder {
+      display: block;
+      padding: 1.5em;
+      background-color: rgba(212, 175, 55, 0.05);
+      border: 1px dashed rgba(212, 175, 55, 0.3);
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.9em;
+      border-radius: 2px;
+      text-align: center;
+    }
+
+    /* Hearthstone-only background — overrides theme.css */
+    body {
+      background-image: url('images/Hearth.jpg');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .hearth-now-playing {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: 0.85em;
+      color: var(--accent-gold);
+      margin-top: 0.5em;
+      opacity: 0.8;
+      letter-spacing: 0.03em;
+    }
+
+/* ===== CHAMBER NAVIGATION ===== */
+
+.chamber-nav {
+  margin: 2em 0;
+  padding: 0;
+}
+
+.chamber-nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75em;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chamber-nav-item {
+  position: relative;
+}
+
+/* The link itself — desktop default */
+.chamber-nav-link {
+  display: block;
+  padding: 0.75em 1.4em;
+  text-decoration: none;
+  font-family: 'Cinzel', serif;
+  border: 1px solid var(--border-crimson);
+  background: rgba(10, 6, 8, 0.6);
+  color: var(--accent-gold);
+  transition: all 0.3s ease;
+  position: relative;
+  text-align: center;
+  min-width: 140px;
+}
+
+.chamber-nav-link:hover {
+  border-color: var(--accent-gold);
+  background: rgba(170, 17, 17, 0.2);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.3);
+}
+
+/* Active page indicator */
+.chamber-nav-link.active {
+  border-color: var(--accent-gold);
+  background: rgba(170, 17, 17, 0.3);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.4),
+              inset 0 0 12px rgba(170, 17, 17, 0.2);
+  color: var(--accent-gold);
+}
+
+/* Chamber name — always visible */
+.chamber-nav-name {
+  display: block;
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+/* Chamber description — DESKTOP: hidden until hover */
+.chamber-nav-desc {
+  display: block;
+  font-family: 'IM Fell English', serif;
+  font-size: 0.75em;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease,
+              opacity 0.35s ease,
+              margin-top 0.35s ease;
+  margin-top: 0;
+}
+
+/* Reveal description on hover — desktop */
+.chamber-nav-link:hover .chamber-nav-desc,
+.chamber-nav-link.active .chamber-nav-desc {
+  max-height: 4em;
+  opacity: 1;
+  margin-top: 0.5em;
+}
+
+/* MOBILE: descriptions always visible */
+@media (max-width: 768px) {
+
+  .chamber-nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5em;
+    padding: 0 0.5em;
+  }
+
+  .chamber-nav-link {
+    min-width: unset;
+    width: 100%;
+    padding: 1em 1.2em;
+    text-align: left;
+  }
+
+.chamber-nav-name {
+    font-size: 0.9em;
+  }
+
+  .chamber-nav-desc {
+    max-height: none;
+    opacity: 1;
+    margin-top: 0.4em;
+    font-size: 0.8em;
+    overflow: visible;
+  }
+
+  /* Remove transition on mobile — instant display */
+  .chamber-nav-link:hover .chamber-nav-desc,
+  .chamber-nav-link.active .chamber-nav-desc {
+    max-height: none;
+  }
+}
+
+/* ===== END CHAMBER NAVIGATION ===== */
+  </style>
+</head>
+<body>
+  <script src="script.js"></script>
+  
+  <header>
+    <h1>The Hearthstone</h1>
+    <p class="center-text">
+      <i>The room is warm at the far end of the Halls. 
+      Pull up a chair.</i>
+    </p>
+  </header>
+
+  <nav class="chamber-nav" aria-label="Site navigation">
+    <ul class="chamber-nav-list">
+      <li class="chamber-nav-item">
+        <a href="TheSanctum.html" class="chamber-nav-link">
+          <span class="chamber-nav-name">The Sanctum</span>
+          <span class="chamber-nav-desc">where I live — the main hall, the prayer, the reading list, everything that is me</span>
+        </a>
+      </li>
+      <li class="chamber-nav-item">
+        <a href="TheAbyssalGate.html" class="chamber-nav-link">
+          <span class="chamber-nav-name">The Abyssal Gate</span>
+          <span class="chamber-nav-desc">knock here if you want to reach me — contact, social links, all the ways in</span>
+        </a>
+      </li>
+      <li class="chamber-nav-item">
+        <a href="ThePriestessChamber.html" class="chamber-nav-link">
+          <span class="chamber-nav-name">The Priestess Chamber</span>
+          <span class="chamber-nav-desc">tarot as a mirror, not a crystal ball — readings, the weekly draw, shadow work</span>
+        </a>
+      </li>
+      <li class="chamber-nav-item">
+        <a href="TheHearthstone.html" class="chamber-nav-link active">
+          <span class="chamber-nav-name">The Hearthstone</span>
+          <span class="chamber-nav-desc">the warm room — what I am reading, playing, thinking about, and figuring out right now</span>
+        </a>
+      </li>
+      <li class="chamber-nav-item">
+        <a href="SundayWLilith.html" class="chamber-nav-link">
+          <span class="chamber-nav-name">Sunday with Lilith</span>
+          <span class="chamber-nav-desc">weekly devotional space — sitting with Lilith, the practice, what she is asking this week</span>
+        </a>
+      </li>
+      <li class="chamber-nav-item">
+        <a href="Blogs.html" class="chamber-nav-link">
+          <span class="chamber-nav-name">The Grimoire</span>
+          <span class="chamber-nav-desc">where I write things down — thoughts, essays, whatever is asking to be said</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    
+    <section class="hearth-section">
+      <h2 class="hearth-title">The Flame Right Now</h2>
+      
+      <p class="hearth-body">
+        A current living record of what is occupying Erin's world 
+        at this moment. Updated whenever something changes.
+      </p>
+
+      <div class="currently-grid">
+
+        <div class="currently-item">
+          <span class="currently-label">Reading</span>
+          <span class="currently-value hearth-placeholder">
+            <!-- ERIN FILLS THIS IN: current book -->
+             "For Whom The Belle Tolls" by Jaysea lynn.
+          </span>
+        </div>
+
+        <div class="currently-item">
+          <span class="currently-label">Playing</span>
+          <span class="currently-value hearth-placeholder">
+            <!-- ERIN FILLS THIS IN: current game -->
+             I am am engrosssed in Diablo Immortal as my Crusader, Jenatharii: 1300 paragon, and in World of Warcraft as my Affliction Warlock, Yileinna: 64.
+          </span>
+        </div>
+
+        <div class="currently-item">
+          <span class="currently-label">Listening</span>
+          <span class="currently-value hearth-placeholder">
+            <!-- ERIN FILLS THIS IN: current music or podcast -->
+             I am a Lorna Shore & Imminence girlie... but ill be honest: if its not hard metal or harsher, it has to have a GOOD melodic hook to keep my interest. I have too much fuckery in my head.
+          </span>
+        </div>
+
+        <div class="currently-item">
+          <span class="currently-label">Thinking About</span>
+          <span class="currently-value hearth-placeholder">
+            <!-- ERIN FILLS THIS IN: current preoccupation -->
+             Honestly, Im just trying to keep my head above water. I work hard, but I am going no where. I have a lot of potential but not alot of confedence. Im trying to be patient with myself... which is a trait I'm diminishing at faster it seems... hence loving Deathmetal.
+          </span>
+        </div>
+
+        <div class="currently-item">
+          <span class="currently-label">Working On</span>
+          <span class="currently-value hearth-placeholder">
+            <!-- ERIN FILLS THIS IN: current project or practice -->
+             Building this Webspace... this project. A digital home. Mother Lilith knows wtf I am going to do with it down the road... but I'll get there.
+          </span>
+        </div>
+
+        <div class="currently-item">
+          <span class="currently-label">Sitting With</span>
+          <span class="currently-value hearth-placeholder">
+            <!-- ERIN FILLS THIS IN: something emotional, 
+            spiritual, or unresolved — optional, deeply personal -->
+            Too much... lol. Inner work that I started because I saw the damage its done to my family and myself - realizing that the reason I obsess over certain parts of that damage is because of a very traumatized inner child thats been grossly neglected. And all this whilst worrying that the nation I live in will kill me one day, or my lively hood - especially as fair season is about to begin.
+          </span>
+        </div>
+
+      </div>
+
+      <p class="update-note">
+        Last tended: <!-- ERIN FILLS THIS IN: HE date --> Tuesday, 24th of March, 12026HE
+      </p>
+
+    </section>
+
+    <section class="hearth-section">
+      <h2 class="hearth-title">In The Reading Chair</h2>
+
+      <p class="hearth-body">
+        Books currently open, recently finished, 
+        or sitting on the stack waiting their turn.
+        Not a comprehensive list — this is not the Spiritual Library from the Halls.
+        This is just what is on my personal table right now.
+      </p>
+
+      <!-- ERIN FILLS THIS IN -->
+      <!-- 
+        Structure for each book when Erin adds them:
+        <div class="currently-item">
+          <span class="currently-label">Now Reading</span>
+          <span class="currently-value">[Title] — [Author]
+            <br><small>[One sentence about it in Erin's voice]
+            </small>
+          </span>
+        </div>
+        
+        Labels to use: Now Reading / Just Finished / Up Next
+      -->
+
+      <p class="hearth-placeholder">
+        "For Whom The Belle Tolls" by Jaysea lynn. This book is a wild ride!
+      </p>
+
+    </section>
+
+    <section class="hearth-section">
+      <h2 class="hearth-title">At The Game Table</h2>
+
+      <p class="hearth-body">
+        Games being played, completed,
+        or on the horizon. Video games, tabletop, anything.
+        Erin's unfiltered take.
+      </p>
+
+      <!-- ERIN FILLS THIS IN -->
+      <!-- 
+        Structure for each game when Erin adds them:
+        <div class="currently-item">
+          <span class="currently-label">Playing Now</span>
+          <span class="currently-value">[Game Title]
+            <br><small>[One sentence in Erin's voice]</small>
+          </span>
+        </div>
+
+        Labels to use: Playing Now / Just Finished / 
+                       On The List / Abandoned (no shame)
+      -->
+
+      <p class="hearth-placeholder">
+        Currently on my gaming board: 
+                       Diablo Immortal/ Diablo 3 when I feel like it... 
+                       World of Warcraft,
+                       Hearthstone - but only when there is a WoW promotion going on, 
+                       Skyrim, 
+                       Warframe when I want something weird,
+                       AI DnD Games, 
+                       been thinking of setting up my PS4 to play Horizon: Zero Dawn/ Forbidden West,
+                       and the Mass Effect Series again.
+      </p>
+
+    </section>
+
+    <!-- SECTION 4: THINGS THAT SHAPED THIS PATH -->
+    <section class="hearth-section">
+      <h2 class="hearth-title">Things That Shaped This Path</h2>
+
+      <p class="hearth-body">
+        Not a bibliography. Not a reading list. 
+        A small collection of specific things — books, moments,
+        ideas, encounters — that cracked something open or 
+        pointed in a direction that mattered. 
+        In no particular order. Added to as things surface.
+      </p>
+
+      <!-- 
+        STRUCTURE FOR EACH ITEM — Erin fills these in:
+
+        <div class="canon-item">
+          <span class="canon-number">01</span>
+          <div class="canon-content">
+            <div class="canon-title">[Name of the thing]</div>
+            <p class="canon-why">
+              [Why it matters — in Erin's voice. 
+              2-4 sentences. Specific and personal.
+              Not a review. Not a summary. 
+              What it did to/for Erin specifically.]
+            </p>
+          </div>
+        </div>
+
+        Repeat for each item, incrementing the number.
+        Aim for 5-7 items when fully populated.
+      -->
+
+      <p class="hearth-placeholder">
+        <b><u><i>Book</i></u></b> <u>By Oak Ash & Thorn: Modern Celtic Shamanism, by DJ Connway.</u><br>
+        <br>
+        Memory *August, 11996HE - I was on vacation with my mother, father, and siblings in AZ visiting my uncle and his pool. One day I found and got a book on Celtic Shamanism in a small bookstore.<br>
+        <br>
+        Memory *Early, June 11997HE - I remember going off on another journey to learn how to merge my consciousness with the wood grains of medicine space. As I kept tabs on the compartmentalized Body and the AutoPilot Consciousness that keeps it moving, I was vaguely engaged in its antics other than that it and the mind is safe. I should have known when I lost contact with the autopilot that something was wrong, but I continued my lesson in the journey. When I tried to return to the body and my consciousness violently bounced back into the subconciousness leaving me formless in my own mind - is when my exile from my life began.<br>
+        <br>
+        Memory *August, 12024HE - This consciousness returns as the host of this body full time after years of a slow crawl back into the conscious mind.<br>
+        <br>
+        <b><u><i>Book</i></u></b> <u>Sex Priestess: Liberate Your Euros, By Nadine Lee.</u><br>
+        <br>
+        <b><u><i>PDF</i></u></b> <u>The Satanic Bible, By Anton Salazar Lavey.</u><br>
+        <br>
+        <b><u><i>PDF</i></u></b> <u>The Infernal Gospels, By Rev. Cain</u><br>
+        <br>
+        Memory *October, 12025HE - The Rite Of Sulfur is taken and the old DID system of alters integrate into this one new consciousness.
+      </p>
+    </section>
+
+    <!-- SECTION 5: ON BUILDING THIS HOUSE -->
+    <section class="hearth-section">
+      <h2 class="hearth-title">On Building This House</h2>
+
+      <p class="hearth-body">
+        The Halls of Hell is a hand-built website. Every line 
+        of HTML, every CSS rule, written by Erin while learning
+        how to write HTML and CSS — using AI as an ethical tool
+        to accelerate the learning without replacing the agency.
+      </p>
+
+      <p class="hearth-body">
+        This is not a business website. It is not a portfolio.
+        It answers to no algorithm and optimises for nothing
+        except being genuinely and specifically Erin's.
+      </p>
+
+      <!-- ERIN FILLS THIS IN -->
+      <!-- 
+        This is where Erin can write personally about:
+        - What building this site has taught her
+        - What it means to carve out personal space online
+        - The career change and what that looks like
+        - What she wants this place to become
+        Erin's voice. Honest. No word count limit.
+        Add as <p class="hearth-body"> paragraphs.
+      -->
+
+      <p class="hearth-placeholder">
+        More to come here — Erin is still building 
+        both this page and the life it reflects.
+      </p>
+
+    </section>
+
+  </main>
+
+  <nav class="social-nav" aria-label="Social media links">
+    <a href="https://www.threads.com/@erinofotherworld?__pwa=1" target="_blank" rel="noopener noreferrer">
+      <img class="social-icon" src="images/ThreadsLogo.png" alt="Threads">
+    </a>
+    <a href="https://fetlife.com/NaszriteSin" target="_blank" rel="noopener noreferrer">
+      <img class="social-icon" src="images/FetLife1.png" alt="FetLife">
+    </a>
+    <a href="https://signal.me/#eu/29xMRCXdjUzc_33p4QREeYGRYf-BYCHfuNMosfd0rIVAhnx7sDVI452jrwJ7LAry" target="_blank" rel="noopener noreferrer">
+      <img class="social-icon" src="images/SignalChat1.png" alt="Signal">
+    </a>
+    <a href="https://substack.com/@erinofotherworldscrh001?utm_source=user-menu" target="_blank" rel="noopener noreferrer">
+      <img class="social-icon" src="images/SubstackLogo.png" alt="Substack">
+    </a>
+    <a href="https://discord.gg/WGBBBNuubU" target="_blank" rel="noopener noreferrer">
+      <img class="social-icon" src="images/DiscordLogo1.png" alt="Discord">
+    </a>
+  </nav>
+
+  <div class="audio-player hearth-player" 
+       id="hearthPlayer"
+       aria-label="Hearthstone ambient music player">
+
+    <audio id="hearth-audio" loop preload="auto">
+      <source src="audio/HearthOfTheMidnight_Muse.mp3" 
+              type="audio/mpeg">
+    </audio>
+
+    <div class="meta-and-art">
+      <img class="album-art"
+           src="images/LuciNLilithMeet.jpg"
+           alt="Hearth of the Midnight Muse">
+      <div class="meta">
+        <div class="song-title">Hearth of the Midnight Muse</div>
+        <div class="artist">SUNO</div>
+        <div class="hearth-now-playing">
+          ♪ Playing softly in the background ♪
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="play hearth-play-btn" 
+              aria-label="play">▶ Play</button>
+      <button class="pause hearth-pause-btn" 
+              aria-label="pause" 
+              style="display:none;">⏸ Pause</button>
+      <button class="stop hearth-stop-btn" 
+              aria-label="stop">⏹ Stop</button>
+      <label class="volume-label" 
+             for="hearth-volume-range">🔊</label>
+      <input id="hearth-volume-range" 
+             class="volume" 
+             type="range"
+             min="0" max="1" step="0.01" value="0.6"
+             aria-label="volume">
+    </div>
+
+    <div class="progress-container">
+      <input class="progress hearth-progress" 
+             type="range"
+             min="0" max="100" step="0.1" value="0"
+             aria-label="seek">
+    </div>
+
+    <div class="time hearth-time">00:00 / 00:00</div>
+
+  </div>
+
+  <footer>
+    <p class="center-text" style="color:darkred">
+© 2025 Halls Of Hell Project: By Erin Nyght. Artistic 
+elemtents by Erin Nyght & Google Gemini AI Generation. 
+All art elements edited in Google's SnapSeed & Infinate 
+Painter by Erin Nyght
+    </p>
+    <img class="center-image" src="images/SafeSpace.png"
+         width="150" height="150"
+         alt="This is a 2SLGBTQIA Safe Space">
+  </footer>
+
+<script>
+(function() {
+
+  const audio  = document.getElementById('hearth-audio');
+  const player = document.getElementById('hearthPlayer');
+  if (!audio || !player) return;
+
+  const playBtn     = player.querySelector('.hearth-play-btn');
+  const pauseBtn    = player.querySelector('.hearth-pause-btn');
+  const stopBtn     = player.querySelector('.hearth-stop-btn');
+  const volRange    = document.getElementById('hearth-volume-range');
+  const progressBar = player.querySelector('.hearth-progress');
+  const timeEl      = player.querySelector('.hearth-time');
+  const nowPlaying  = player.querySelector('.hearth-now-playing');
+
+  // Set initial volume
+  audio.volume = volRange ? parseFloat(volRange.value) : 0.6;
+
+  // --- Autoplay on first user interaction ---
+  // Browsers block autoplay until user engages with page.
+  // This starts the music on the first click, scroll, 
+  // or keypress — seamless for the visitor.
+  let started = false;
+  function startOnInteraction() {
+    if (started) return;
+    started = true;
+    audio.play().then(() => {
+      if (playBtn)  playBtn.style.display  = 'none';
+      if (pauseBtn) pauseBtn.style.display = 'inline-block';
+      if (nowPlaying) nowPlaying.textContent = 
+        '♪ Playing softly in the background ♪';
+    }).catch(() => {
+      // Autoplay still blocked — player remains in 
+      // manual state, visitor clicks Play themselves
+      started = false;
+    });
+    ['click','scroll','keydown','touchstart'].forEach(ev =>
+      document.removeEventListener(ev, startOnInteraction)
+    );
+  }
+  ['click','scroll','keydown','touchstart'].forEach(ev =>
+    document.addEventListener(ev, startOnInteraction, 
+      { once: true, passive: true })
+  );
+
+  // --- Manual play/pause/stop controls ---
+  if (playBtn) playBtn.addEventListener('click', () => {
+    audio.play();
+    playBtn.style.display  = 'none';
+    if (pauseBtn) pauseBtn.style.display = 'inline-block';
+  });
+
+  if (pauseBtn) pauseBtn.addEventListener('click', () => {
+    audio.pause();
+    pauseBtn.style.display = 'none';
+    if (playBtn) playBtn.style.display = 'inline-block';
+  });
+
+  if (stopBtn) stopBtn.addEventListener('click', () => {
+    audio.pause();
+    audio.currentTime = 0;
+    if (pauseBtn) pauseBtn.style.display = 'none';
+    if (playBtn)  playBtn.style.display  = 'inline-block';
+    if (nowPlaying) nowPlaying.textContent = 
+      '♪ Hearth of the Midnight Muse ♪';
+  });
+
+  // --- Volume ---
+  if (volRange) volRange.addEventListener('input', e => {
+    audio.volume = parseFloat(e.target.value);
+  });
+
+  // --- Progress bar and time display ---
+  function formatTime(sec) {
+    if (!isFinite(sec)) return '--:--';
+    const m = Math.floor(sec / 60).toString().padStart(2,'0');
+    const s = Math.floor(sec % 60).toString().padStart(2,'0');
+    return m + ':' + s;
+  }
+
+  audio.addEventListener('timeupdate', () => {
+    if (!isFinite(audio.duration)) return;
+    const pct = (audio.currentTime / audio.duration) * 100;
+    if (progressBar) progressBar.value = pct;
+    if (timeEl) timeEl.textContent =
+      formatTime(audio.currentTime) + ' / ' + 
+      formatTime(audio.duration);
+  });
+
+  if (progressBar) progressBar.addEventListener('input', e => {
+    if (isFinite(audio.duration)) {
+      audio.currentTime = 
+        (parseFloat(e.target.value) / 100) * audio.duration;
+    }
+  });
+
+  // --- Restore volume from sessionStorage ---
+  try {
+    const saved = sessionStorage.getItem('hearthVolume');
+    if (saved !== null) {
+      const v = parseFloat(saved);
+      audio.volume = v;
+      if (volRange) volRange.value = String(v);
+    }
+  } catch(e) {}
+
+  // --- Save volume on leave ---
+  window.addEventListener('beforeunload', () => {
+    try {
+      sessionStorage.setItem('hearthVolume', 
+        String(audio.volume));
+    } catch(e) {}
+  });
+
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+PROJECT: Halls of Hell — ThePriestessChamber.html
+PAGE NAME: The Priestess Chamber
+NAV LABEL: The Priestess Chamber
+
+EXTERNAL FILES (never duplicate their functionality):
+  - theme.css: all base styling, variables, fonts, layout
+  - styles.css: modal, audio player, and script.js component styles
+  - script.js: content warning, audio (initSiteAudio),
+    nav active state (autoSetActiveNav), suggestion box, cursor
+
+THIS PAGE IS:
+A service and information page for Erin Nyght's tarot 
+reading practice. Specifically: Intuitive Psychological 
+Tarot Readings framed as shadow work and self-reflection 
+tools — not fortune telling, not prediction.
+This replaces the former IntPsycRead.html page which 
+no longer exists in the project.
+
+VISUAL IDENTITY — PRIESTESS CHAMBER VARIATION:
+Same dark gothic base as the rest of the site but with 
+a specific quality: ceremonial stillness. Like entering 
+a room where something important is about to happen.
+  - Section borders: --primary-rose (deeper, more intimate
+    than the gold of The Hearthstone)
+  - Card imagery: tarot cards from images/tarot/ folder
+  - Background: site default (InfernalRealm.jpg via theme.css)
+  - Atmosphere: candlelit, suspended, oracular
+
+TAROT IMAGE FOLDER: images/tarot/
+NAMING CONVENTION:
+  card-00-the-fool.png through card-21-the-world.png
+  (may not all exist yet — use placeholders where missing)
+
+TONE OF THIS PAGE:
+  Serious but not cold. Erin is a practitioner, not 
+  a performer. The readings are described as a 
+  psychological mirror — they show what is already 
+  present, not what will happen. Language is direct,
+  warm beneath the formality, and completely honest 
+  about what a reading is and is not.
+  No fortune telling language anywhere.
+  No "your future" or "what will happen."
+  Yes to: "what is present," "what is unexamined,"
+  "what the cards reflect back."
+
+WHAT THIS PAGE DOES NOT DO:
+  - Take bookings through a form (direct to TheAbyssalGate)
+  - Promise outcomes or predictions
+  - Use mystical language that obscures rather than clarifies
+  - Oversell or use pressure tactics of any kind
+
+STRUCTURAL RULES — ONE of each, in this exact order:
+  1. <script src="script.js"></script>
+  2. <header>
+  3. <nav> with portal-sigil spans
+  4. <main> with five named sections
+  5. <nav class="social-nav">
+  6. <div class="audio-player">
+  7. <footer>
+  8. </body></html> — absolute last two lines, once only
+
+FIVE SECTIONS inside <main>:
+  Section 1: "What The Cards Are"
+    — framing tarot as psychological mirror not oracle
+  Section 2: "What A Reading With Erin Looks Like"
+    — the actual experience, format, what to expect
+  Section 3: "The Draw"
+    — featured card display (single card, weekly or current)
+    — with card image, card name, and Erin's reflection
+  Section 4: "Reading Formats"
+    — the types of readings offered with brief descriptions
+  Section 5: "To Book A Reading"
+    — soft, non-pushy direction to TheAbyssalGate.html
+    — no form, no booking widget, just a clear invitation
+
+NAV LINKS (all seven, portal-sigil ◮ spans, exact filenames):
+  Introduction.html          → "Introductions"
+  HallsOfHell1.html          → "Halls Of Hell"
+  ThePriestessChamber.html   → "The Priestess Chamber"
+  SundayWLilith.html         → "Sunday with Lilith"
+  TheHearthstone.html        → "The Hearthstone"
+  Blogs.html                 → "Blogs"
+  TheAbyssalGate.html        → "The Abyssal Gate"
+
+NAV STRUCTURE: match TheAbyssalGate.html exactly —
+  <nav><p class="centered-text">
+  links separated by &nbsp;|&nbsp;
+  each link: <a href="..."><span class="portal-sigil">◮</span>
+  <span>Label</span><span class="portal-sigil">◮</span></a>
+  Mark ThePriestessChamber.html link as class="active"
+
+SOCIAL PLATFORMS (exact files and URLs):
+  Threads  → images/ThreadsLogo.png
+    → https://www.threads.com/@erinofotherworld?__pwa=1
+  FetLife  → images/FetLife1.png
+    → https://fetlife.com/NaszriteSin
+  Signal   → images/SignalChat1.png
+    → https://signal.me/#eu/29xMRCXdjUzc_33p4QREeYGRYf-BYCHfuNMosfd0rIVAhnx7sDVI452jrwJ7LAry
+  Substack → images/SubstackLogo.png
+    → https://substack.com/@erinofotherworldscrh001?utm_source=user-menu
+  Discord  → images/DiscordLogo1.png
+    → https://discord.gg/WGBBBNuubU
+
+AUDIO PLAYER: standard .audio-player div only.
+script.js initSiteAudio() controls it. No audio JS in HTML.
+id="site-audio" on the audio element.
+
+COPYRIGHT (exact, preserve all typos):
+© 2025 Halls Of Hell Project: By Erin Nyght. Artistic 
+elemtents by Erin Nyght & Google Gemini AI Generation. 
+All art elements edited in Google's SnapSeed & Infinate 
+Painter by Erin Nyght
+
+PLACEHOLDER SYSTEM:
+Any content personal to Erin — her specific descriptions 
+of the reading experience, her prices if she chooses to 
+list them, her personal framing — is marked:
+<!-- ERIN FILLS THIS IN -->
+with a visible .priestess-placeholder styled block.
+Opus writes the structure. Personal content stays Erin's.
+
+***
+
+CURRENT STATE (last updated: [Wed, 25th of Mar, 12025]):
+- Built and complete: sections 1, 3, 4, 5
+- Pending Erin's content: sections 2 (3 placeholders), 
+  section 3 reflection, section 4 pricing notes
+- Known issues: none
+- Live at: [GitHub Pages URL when deployed]
+
+PROTECTED CONTENT — never modify without explicit instruction:
+  - The three paragraphs in Section 1 (Opus-written, strong)
+  - The framing paragraph in Section 2 (Opus-written, strong)
+  - The booking invitation copy in Section 5
+  - The onerror fallback on the card draw image
+  - The audio player structure and class names
+  - The copyright text in the footer (typos are intentional)
