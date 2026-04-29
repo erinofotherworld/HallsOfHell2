@@ -1,4 +1,4 @@
-# The Halls Of Hell Digital Home Website Project.
+# The Halls Of Hell: A Digital Home Website Project.
 
 The Digital Home Website Project, known to me simply as the "Halls of Hell Project," is a manifestation of the my personal & spiritual landscape, moving beyond the traditional limits of a portfolio or corporate profile. Its as close to a living digital space, structured into distinct "rooms" or chambers to reflect different parts of my inner life.
 
